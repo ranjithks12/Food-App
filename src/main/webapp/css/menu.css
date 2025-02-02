@@ -1,0 +1,269 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #F5F5F5;
+  color: #2A3335;
+  padding-top: 5rem;
+}
+/* 
+Navbar
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #48CFCB;
+  padding: 1em 2em;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar h1 {
+  color: #F5F5F5;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+}
+
+.navbar ul li {
+  margin-left: 1.5em;
+}
+
+.navbar ul li a {
+  color: #F5F5F5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.navbar ul li a:hover {
+  color: #424242;
+  transition: color 0.3s ease;
+} */
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 2rem 2rem;
+}
+
+/* Card */
+.card {
+    background-color: var(--light-green);
+    padding: 1rem;
+    border-radius: 10px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    color: var(--dark-green);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.card p {
+    margin: 0.5rem 0;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--medium-green);
+}
+
+.availability {
+    color: var(--dark-green);
+}
+
+/* Card */
+.card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 800px; /* Adjusts the card width */
+    margin: 10px auto;
+    padding: 15px;
+    background-color:  #F5F5F5; /* Using color palette */
+    border: 1px solid #C4DAD2;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Image container styling */
+.image-container {
+    flex: 1;
+    max-width: 150px; /* Restricting image width */
+    text-align: center;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Content styling */
+.content {
+    flex: 2;
+    margin-left: 20px;
+}
+
+.item-name {
+    font-size: 1.5rem;
+    color: #16423C; /* Using color palette */
+    margin: 0;
+}
+
+.description {
+    color: #6A9C89; /* Using color palette */
+    font-size: 0.9rem;
+    margin: 5px 0;
+}
+
+.availability {
+    color: #16423C;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.price {
+    font-size: 1rem;
+    color: #16423C;
+    margin: 5px 0;
+}
+
+/* Quantity input and Add to Cart button styling */
+form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.quantity {
+    width: 50px; /* Minimized input size */
+    padding: 5px;
+    border: 1px solid #C4DAD2;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.card:hover {
+    /* transform: scale(1.05); Slightly increase size on hover
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); Add a stronger shadow */
+     transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+}
+
+
+/* Add to Cart Button */
+.add-to-cart {
+    background-color: #229799;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.add-to-cart:hover {
+    background-color: #229799;
+}
+
+.popup-overlay  {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1;
+}
+
+.popupcontainer{
+    display: block;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    border-radius: 8px;
+    transform: translate(-50%, -50%);
+    background-color: #f5f5f5; /* Optional for visibility */
+    z-index: 2;
+}
+
+.popup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    padding: 1.5em;
+    width: 400px; /* Adjust width as needed */
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional for styling */
+}
+
+h2 {
+    margin-bottom: 1em;
+    font-size: 1rem;
+    color: #333333;
+    text-align: center;
+}
+
+p {
+    margin-bottom: 1em;
+    font-size: 1rem;
+    color: #555555;
+    text-align: center;
+}
+
+.popupbuttons {
+    display: flex;
+    justify-content: center;
+    gap: 1em;
+}
+
+.btn {
+    padding: 0.70em 1.8em;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    background-color: #229799;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1d7a7b;
+}
+
+/* Footer */
+.footer {
+  background-color: #48CFCB;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto; /* Pushes the footer to the bottom when the main content is small */
+}
+
+
