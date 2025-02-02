@@ -1,110 +1,133 @@
-@charset "ISO-8859-1";
-/* General styling */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #E9EFEC; /* Light background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
 .login-container {
-    background-color: #FFFFFF; /* White background for the container */
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(22, 66, 60, 0.15); /* Subtle shadow */
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    transition: transform 0.3s ease-in-out;
+	display: none;
+	position: fixed;
+	top: 0%;
+	height: 100vh;
+	right: 0;
+	padding: 40px;
+	border-radius: 0px;
+	background-color: #FFFFFF;
+	box-shadow: 0 4px 12px rgba(22, 66, 60, 0.15); /* Subtle shadow */
+	max-width: 450px;
+	width: 50%;
+	align-content: ccenter;
+	text-align: center;
+	transition: right 1.3s ease-in-out;
+	z-index: 1002;
 }
 
-.login-container:hover {
-    transform: translateY(-5px); /* Small hover effect */
+.popup-close {
+	float: left;
+	cursor: pointer;
+	font-size: 25px;
+	font-weight: bold;
+	color: #333;
 }
 
 /* Form heading */
 .login-container h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #16423C; /* Dark green heading */
+	font-size: 28px;
+	text-align: left;
+	margin-top: 50px;
+	margin-bottom: 40px;
+	color: #16423C; /* Dark green heading */
 }
 
 /* Input fields */
 .input-group {
-    margin-bottom: 20px;
-    text-align: left;
+	display: flex;
+	align-items: center;
+	background: #eaeaea;
+	margin: 15px 0;
+	border-radius: 3px;
+	/*  text-align: left; */
 }
 
-.input-group label {
+/* .input-group label {
     font-size: 14px;
-    color: #16423C; /* Dark green label */
+    color: #16423C; Dark green label
     margin-bottom: 5px;
     display: inline-block;
 }
-
+ */
 .input-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #6A9C89; /* Soft green border */
-    border-radius: 8px;
-    font-size: 16px;
-    color: #16423C; /* Dark green text */
-    background-color: #E9EFEC;
-    transition: border-color 0.3s ease;
+	width: 100%;
+	padding: 12px;
+	border: 0;
+	outline: 0;
+	font-size: 16px;
+	color: #16423C; /* Dark green text */
+	background-color: transparent;
+	padding: 1.8em, 1em;
+	transition: border-color 0.3s ease;
+}
+
+.input-group svg {
+	margin-left: 1em;
 }
 
 .input-group input:focus {
-    border-color: #16423C; /* Dark green on focus */
-    outline: none;
+	border-color: #48CFCB;
+	outline: none;
 }
 
 /* Submit button */
 .btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #6A9C89; /* Soft green button */
-    border: none;
-    border-radius: 8px;
-    font-size: 18px;
-    color: white; /* White text */
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+	width: 100%;
+	padding: 12px;
+	background-color: #229799;
+	border: none;
+	border-radius: 8px;
+	font-size: 18px;
+	color: #F5F5F5;
+	margin-bottom: 15px;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #16423C; /* Dark green on hover */
-    transform: scale(1.02);
+	background-color: #48CFCB;
+	color: #424242;
+	transform: scale(1.02);
 }
 
 /* Sign up section */
 .signup-link {
-    margin-top: 15px;
+	margin-top: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .signup-link p {
-    color: #16423C; /* Dark green text */
-    font-size: 14px;
+	color: #16423C; /* Dark green text */
+	font-size: 14px;
 }
 
 /* Sign up button */
 .btn-secondary {
-    padding: 10px 24px;
-    background-color: #C4DAD2; /* Light green background */
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
-    color: #16423C; /* Dark green text */
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+	color: #229799;
+	cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s
+		ease;
 }
 
 .btn-secondary:hover {
-    background-color: #6A9C89; /* Soft green on hover */
-    color: white; /* White text on hover */
-    transform: scale(1.02);
+	color: #48CFCB; /* White text on hover */
+	transform: scale(1.02);
+}
+
+.popup-overlay {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	z-index: 1001;
+}
+
+.login-container.show {
+	right: 0; /* Slide into view */
 }

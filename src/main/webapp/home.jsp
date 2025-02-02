@@ -47,7 +47,7 @@
 			</li>
 			<% if (user != null) { %>
 			<li>
-				<a href="profile.jsp"> 
+				<a href="profile.jsp" class="nav-link"> 
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 						 stroke-width="1.5" stroke="currentColor" width="1.5em" height="1.5em">
  					 	 <path stroke-linecap="round" stroke-linejoin="round"
@@ -57,7 +57,7 @@
 				</a>
 			</li>
 			<% } else { %>
-			<li onclick="showLoginPopup()">
+			<li onclick="openLoginModal(); return false;">
 				<a class="nav-link">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="1.5em" height="1.5em">
   					<path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -128,88 +128,6 @@
 		<p>&copy; 2024 FoodApp. All rights reserved.</p>
 	</footer>
 	
-	<div class="popup-overlay" id="popupOverlay"></div>
-		<div class="login-container" id="loginPopup">
-		<span class="popup-close" onClick="closeLoginPopup()">&times;</span>
-        <h2>Login</h2>
-        <form action="loginUser" method="POST">
-            <div class="input-group">
-                <label for="username">User name</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit" class="btn">Sign In</button>
-        </form>
-        <div class="signup-link">
-            <p>Don't have an account? <a onclick="showRegisterPopup()" class="btn-secondary">Register Now</a></p>
-        </div>
-    </div>
-    
-    	<div class="form-container" id="registerPopup">
-    	<span class="popup-close" onClick="closeRegisterPopup()">&times;</span>
-		<h2>Register</h2>
-		<form action="registerUser" method="post">
-			<div class="input-group">
-				<label for="username">User Name:</label> <input type="text"
-					id="username" name="username" required>
-			</div>
-
-			<div class="input-group">
-				<label for="phonenumber">Phone Number:</label> <input type="tel"
-					id="phonenumber" name="phonenumber" required>
-			</div>
-
-			<div class="input-group">
-				<label for="email">Email:</label> <input type="email" id="email"
-					name="email" required>
-			</div>
-
-			<div class="input-group">
-				<label for="address">Address:</label> <input type="text"
-					id="address" name="address" required>
-			</div>
-
-			<div class="input-group">
-				<label for="password">Password:</label> <input type="password"
-					id="password" name="password" required>
-			</div>
-
-			<div class="button-group">
-				<button type="submit" class="btn">Register</button>
-			</div>
-		</form>
-	</div>
-	
-	    <script>
-	    
-	    window.onload = function() {
-	        if (window.location.hash === "#loginPopup") {
-	            showLoginPopup();
-	        }
-	    };
-        function showLoginPopup() {
-            document.getElementById('loginPopup').style.display = 'block';
-            document.getElementById('popupOverlay').style.display = 'block';
-        }
-
-        function closeLoginPopup() {
-            document.getElementById('loginPopup').style.display = 'none';
-            document.getElementById('popupOverlay').style.display = 'none';
-        }
-        
-        function showRegisterPopup() {
-            document.getElementById('loginPopup').style.display = 'none';
-            document.getElementById('registerPopup').style.display = 'block';
-            document.getElementById('popupOverlay').style.display = 'block';
-        }
-
-        function closeRegisterPopup() {
-            document.getElementById('registerPopup').style.display = 'none';
-            document.getElementById('popupOverlay').style.display = 'none';
-        }
-    </script>
+    <jsp:include page="logIn.jsp" />
 </body>
 </html>

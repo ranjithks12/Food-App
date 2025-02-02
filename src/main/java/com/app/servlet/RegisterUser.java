@@ -22,9 +22,9 @@ public class RegisterUser extends HttpServlet{
 		String password = EncryptDecrypt.encrypt(req.getParameter("password"));
 		Long phonenumber =Long.parseLong(req.getParameter("phonenumber"));
 		String email = req.getParameter("email");
-		String address = req.getParameter("address");
+//		String address = req.getParameter("address");
 		
-		User user = new User(username, password	, phonenumber, email, address);
+		User user = new User(username, password	, phonenumber, email);
 		UserDaoImplementation userDao = new UserDaoImplementation();
 		int status = userDao.addUser(user);
 		if(status != 0) {
