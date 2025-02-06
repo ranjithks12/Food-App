@@ -19,7 +19,6 @@
 		<td><% out.println(user.getUser_name());%> </td>
 		<td><% out.println(user.getEmail());%> </td>
 		<td><% out.println(user.getPhone_number());%> </td>
-		<td><% out.println(user.getAddress());%> </td>
 		</tr>
 		<%} %>
 		</table>

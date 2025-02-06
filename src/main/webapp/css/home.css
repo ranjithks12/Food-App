@@ -24,9 +24,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	margin: 8px;
-/* 	background-color: #F5F5F5; */
 	border-radius: 8px;
-/* 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
 	text-align: center;
 	opacity: 0;
 	transform: translateY(20px);
@@ -72,7 +70,7 @@ body {
   display: inline-block;
   margin: 0 1em 1em 1em;
   padding: 0.6em 1.2em;
-  background-color: #229799;
+  background-color: #800080;
   color: #F5F5F5;
   border-radius: 4px;
   text-decoration: none;
@@ -81,8 +79,8 @@ body {
 }
 
 .view-menu-btn:hover {
-  background-color: #48CFCB;
-  color: #424242;
+  background-color: #bf40bf;
+  color: #F5F5F5;
 }
 
 /* Card Fade-in Animation */

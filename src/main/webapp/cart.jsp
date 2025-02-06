@@ -86,10 +86,8 @@
 	<%
 	if (items != null && items.getItems() != null && !items.getItems().isEmpty()) {
 		Map<Integer, CartItem> cartItems = items.getItems();
-		
 	%>
-	<h1>Your Cart</h1>
-	
+	<h1 class="cart-header">Your Cart</h1>
 	<%
 		for (CartItem item : cartItems.values()) {
 			totalAmount += item.getSubTotal();
@@ -141,11 +139,10 @@
 	<%
 	} else {
 	%>
-	<h2>Your cart is empty</h2>
+	<h2 class="cart-header">Your cart is empty</h2>
 	<%
 	}
 	%>
-
 
 	<!-- Footer -->
 	<footer class="footer">
