@@ -13,7 +13,7 @@ import com.app.model.User;
 import com.app.util.MyConnector;
 
 public class UserDaoImplementation implements UserDAO{
-	public static final String ADD_USER_QUERY = "insert into `user`(`user_name`, `password`, `phone_number`, `email`, `address`) values (?,?,?,?,?)";
+	public static final String ADD_USER_QUERY = "insert into `user`(`user_name`, `password`, `phone_number`, `email`) values (?,?,?,?)";
 	public static final String FETCH_BY_USERNAME = "select * from user where `user_name`=?";
 	public static final String FETCH_ALL = "select * from user";
 	private Connection connection = null;
@@ -34,7 +34,7 @@ public class UserDaoImplementation implements UserDAO{
 			pstatement.setString(2, user.getPassword());
 			pstatement.setLong(3, user.getPhone_number());
 			pstatement.setString(4, user.getEmail());
-			pstatement.setString(5, user.getAddress());
+//			pstatement.setString(5, user.getAddress());
 			return pstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,7 +53,7 @@ public class UserDaoImplementation implements UserDAO{
 			pstatement.setString(1, username);
 			result  = pstatement.executeQuery();
 			while(result.next()) {
-				return new User(result.getInt("userid"), result.getString("user_name"),result.getString("password"), result.getLong("phone_number"), result.getString("email"), result.getString("address"), result.getDate("created_on"), result.getDate("last_login_date"));
+				return new User(result.getInt("userid"), result.getString("user_name"),result.getString("password"), result.getLong("phone_number"), result.getString("email"), result.getDate("created_on"), result.getDate("last_login_date"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -72,7 +72,7 @@ public class UserDaoImplementation implements UserDAO{
 			statement = connection.createStatement();
 			ResultSet userList = statement.executeQuery(FETCH_ALL);
 			while(userList.next()) {
-				User user = new User(userList.getInt("user_id"), userList.getString("user_name"),userList.getString("password"), userList.getLong("phone_number"), userList.getString("email"), userList.getString("address"), userList.getDate("created_on"), userList.getDate("last_login_date"));
+				User user = new User(userList.getInt("user_id"), userList.getString("user_name"),userList.getString("password"), userList.getLong("phone_number"), userList.getString("email"), userList.getDate("created_on"), userList.getDate("last_login_date"));
 				usersList.add(user);
 			}
 			return usersList;

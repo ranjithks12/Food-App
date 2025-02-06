@@ -1,85 +1,109 @@
-@charset "ISO-8859-1";
-/* General styling */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #E9EFEC; /* Light background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
-.form-container {
+ .form-container {
+	position: fixed;
+	top: 0%;
+    height : 100vh;	
+	right: -100%;
     background-color: #FFFFFF; /* White background for the container */
     padding: 40px;
-    border-radius: 12px;
+    border-radius: 0px;
     box-shadow: 0 4px 12px rgba(22, 66, 60, 0.15); /* Subtle shadow */
-    max-width: 500px;
-    width: 90%;
+    max-width: 450px;
+    width: 70%;
     text-align: center;
-    transition: transform 0.3s ease-in-out;
+    z-index: 1003;
 }
 
-.form-container:hover {
-    transform: translateY(-5px); /* Small hover effect */
+.popup-close  {
+	float: left;
+	cursor: pointer;
+	font-size: 25px;
+	font-weight: bold;
+	color: #333;
 }
-
 /* Form heading */
 .form-container h2 {
+	text-align: left;
     font-size: 28px;
-    margin-bottom: 20px;
-    color: #16423C; /* Dark green heading */
+    color: #800080; 
+    margin-top: 50px;
+    margin-bottom: 40px;
 }
 
-/* Input fields */
+
 .input-group {
-    margin-bottom: 20px;
-    text-align: left;
+	display: flex;
+	align-items: center;
+	background: #eaeaea;
+    margin: 15px 0;
+    border-radius: 3px;
+   /*  text-align: left; */
 }
-
-.input-group label {
-    font-size: 14px;
-    color: #16423C; /* Dark green label */
-    margin-bottom: 5px;
-    display: inline-block;
+.input-group svg {
+	margin-left: 1em;
 }
 
 .input-group input {
     width: 100%;
     padding: 12px;
-    border: 1px solid #6A9C89; /* Soft green border */
-    border-radius: 8px;
+    border: 0;
+    outline: 0;
     font-size: 16px;
     color: #16423C; /* Dark green text */
-    background-color: #E9EFEC;
+    background-color: transparent;
+    padding: 1.8em, 1em; 
     transition: border-color 0.3s ease;
 }
 
 .input-group input:focus {
-    border-color: #16423C; /* Dark green on focus */
+    border-color: #48CFCB; /* Dark green on focus */
     outline: none;
 }
 
 /* Submit button */
 .button-group {
+	display: flex;
+	align-content: center;
     margin-top: 20px;
+    gap: 2em;
 }
 
 .btn {
     width: 100%;
     padding: 12px;
-    background-color: #6A9C89; /* Soft green button */
+    background-color: #800080; 
     border: none;
     border-radius: 8px;
     font-size: 18px;
-    color: white; /* White text */
+    color: #F5F5F5; /* White text */
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.btn:hover {
-    background-color: #16423C; /* Dark green on hover */
+.signin{
+	color: #0c0c0c;
+	background-color: #d2d2d2;
+}
+
+
+.btn.signup:hover {
+ 	background-color: #48CFCB;
+	color: #424242;
+    transform: scale(1.02);
+}
+
+.signup-link p {
+    color: #16423C; /* Dark green text */
+    font-size: 14px;
+}
+
+/* Sign up button */
+.btn-secondary {
+    color: #229799;
+    cursor: pointer;
+	transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-secondary:hover {
+    color: #48CFCB; /* White text on hover */
     transform: scale(1.02);
 }

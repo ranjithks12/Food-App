@@ -21,6 +21,7 @@ public class LoginUser extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String username = req.getParameter("username");
 		String password =  req.getParameter("password");
+		String redirectUrl = req.getParameter("redirectUrl");
 		
 		UserDaoImplementation userDao = new UserDaoImplementation();
 		User user = userDao.fetchUserByUsername(username);
@@ -28,11 +29,14 @@ public class LoginUser extends HttpServlet{
 			if(password.equals(EncryptDecrypt.decrypt(user.getPassword()))) {
 				HttpSession session = req.getSession();
 				session.setAttribute("loggedUser", user);
-				resp.sendRedirect("home.jsp");
+				resp.getWriter().write("User Logged Successfully");
+				resp.sendRedirect(redirectUrl);
 			}
 			else {
 				resp.sendRedirect("error.jsp");
 			}
+		} else {
+			resp.getWriter().write("No user Found..! Please Register");
 		}
 		
 	}

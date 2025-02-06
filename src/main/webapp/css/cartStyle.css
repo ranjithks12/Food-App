@@ -6,62 +6,28 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-color: #F7F9F9; /* Light background for better contrast */
+  background-color: #F7F9F9; 
+  padding-top: 5rem; 
   height: 100vh;
-  padding-top: 5rem; /* Prevents overlap with the navbar */
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #48CFCB;
-  padding: 1rem 2rem;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds depth */
+.cart-header{
+	margin-left: 1em;
+	text-align: center;
 }
 
-.navbar h1 {
-  color: #F5F5F5;
-  font-size: 1.5rem;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-}
-
-.navbar ul li {
-  margin-left: 1.5rem;
-}
-
-.navbar ul li a {
-  color: #F5F5F5;
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.navbar ul li a:hover {
-  color: #333;
-  transition: color 0.3s ease;
-}
 
 /* Main Container */
 .container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Center the container contents */
-    width: 70%; /* Set the width to 70% of the screen */
-    margin: 0 auto; /* Center the container within the page */
+    align-items: center;
+    width: 70%; 
+    margin: 0 auto; 
     padding: 2rem 0;
-    background-color: #E9EFEC; /* Optional background for the container */
-    border-radius: 10px; /* Rounded corners for better design */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    background-color: #E9EFEC; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
 }
 
 /* General styles for the cart item container */
@@ -122,15 +88,15 @@ body {
     font-size: 16px;
     border: none;
     border-radius: 4px;
-    background-color: #C4DAD2;
-    color: #16423C;
+    background-color: #800080;
+  	color: #F5F5F5;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .quantity button:hover {
-    background-color: #6A9C89;
-    color: #ffffff;
+  background-color: #bf40bf;
+  color: #F5F5F5;
 }
 
 .quantity input {
@@ -158,15 +124,15 @@ body {
     font-size: 14px;
     border: none;
     border-radius: 4px;
-    background-color: #B9E5E8;
-    color: #16423C;
+	background-color: #800080;
+  	color: #F5F5F5;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .delete:hover {
-    background-color: #7AB2D3;
-    color: #ffffff;
+  background-color: #bf40bf;
+  color: #F5F5F5;
 }
 
 /* Checkout Button */
@@ -205,16 +171,5 @@ body {
 .checkout-btn:hover {
     background-color: #3bbf99;
     transform: translateY(-2px);
-}
-
-/* Footer Styling */
-.footer {
-  background-color: #48CFCB;
-  color: #FFF;
-  text-align: center;
-  padding: 1.5rem;
-  margin-top: auto;
-  width: 100%;
-  font-size: 0.9rem;
 }
 

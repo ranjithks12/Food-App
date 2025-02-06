@@ -10,43 +10,6 @@ body {
   color: #2A3335;
   padding-top: 5rem;
 }
-/* 
-Navbar
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #48CFCB;
-  padding: 1em 2em;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
-
-.navbar h1 {
-  color: #F5F5F5;
-}
-
-.navbar ul {
-  list-style: none;
-  display: flex;
-}
-
-.navbar ul li {
-  margin-left: 1.5em;
-}
-
-.navbar ul li a {
-  color: #F5F5F5;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.navbar ul li a:hover {
-  color: #424242;
-  transition: color 0.3s ease;
-} */
 
 /* Main Container */
 .container {
@@ -163,16 +126,14 @@ form {
 }
 
 .card:hover {
-    /* transform: scale(1.05); Slightly increase size on hover
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); Add a stronger shadow */
-     transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
+    transform: translateY(-5px);
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); 
 }
 
 
 /* Add to Cart Button */
 .add-to-cart {
-    background-color: #229799;
+    background-color: #800080;
     color: white;
     padding: 0.5rem 1rem;
     border: none;
@@ -182,7 +143,8 @@ form {
 }
 
 .add-to-cart:hover {
-    background-color: #229799;
+    background-color: #bf40bf;
+  	color: #F5F5F5;
 }
 
 .popup-overlay  {
@@ -253,17 +215,3 @@ p {
 .btn:hover {
     background-color: #1d7a7b;
 }
-
-/* Footer */
-.footer {
-  background-color: #48CFCB;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  position: relative;
-  bottom: 0;
-  width: 100%;
-  margin-top: auto; /* Pushes the footer to the bottom when the main content is small */
-}
-
-

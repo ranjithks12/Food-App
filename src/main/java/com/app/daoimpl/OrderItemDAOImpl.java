@@ -15,11 +15,12 @@ public class OrderItemDAOImpl implements OrderItemDAO{
 	private static final String ORDER_ID = OrdersDAOImpl.ORDERID.trim();
 
 	@Override
-	public int saveOrderItem(OrderItem orderItem) {
+	public int saveOrderItem(OrderItem orderItem, Connection connection) {
 		int result = 0;
 		try {
-			MyConnector myConnector = MyConnector.getMyConnector();
-			Connection connection = myConnector.connect();
+//			MyConnector myConnector = MyConnector.getMyConnector();
+//			Connection connection = myConnector.connect();
+//			connection.setAutoCommit(false);
 			PreparedStatement pstatement = connection.prepareStatement(SAVE_ORDERITEM);
 			pstatement.setString(1, ORDER_ID);
 			pstatement.setInt(2, orderItem.getMenuId());

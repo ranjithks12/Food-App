@@ -8,27 +8,35 @@ public class User {
 	private String password;
 	private long phone_number;
 	private String email;
-	private String address;
 	private Date created_on;
 	private Date last_login_date;
 	public User() {
 		super();
 	}
-	public User(String user_name, String password, long phone_number, String email, String address) {
+	public User(String user_name, String password, long phone_number, String email) {
 		this.user_name = user_name;
 		this.password = password;
 		this.phone_number = phone_number;
 		this.email = email;
-		this.address = address;
 	}
-	public User(String user_name, String password, long phone_number, String email, String address, Date created_on,
+	public User(String user_name, String password, long phone_number, String email, Date created_on,
 			Date last_login_date) {
 		super();
 		this.user_name = user_name;
 		this.password = password;
 		this.phone_number = phone_number;
 		this.email = email;
-		this.address = address;
+		this.created_on = created_on;
+		this.last_login_date = last_login_date;
+	}
+	public User(int user_id, String user_name, String password, long phone_number, String email,
+			Date created_on, Date last_login_date) {
+		super();
+		this.user_id = user_id;
+		this.user_name = user_name;
+		this.password = password;
+		this.phone_number = phone_number;
+		this.email = email;
 		this.created_on = created_on;
 		this.last_login_date = last_login_date;
 	}
@@ -62,24 +70,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getAddress() {
-		return address;
-	}
-	public User(int user_id, String user_name, String password, long phone_number, String email, String address,
-			Date created_on, Date last_login_date) {
-		super();
-		this.user_id = user_id;
-		this.user_name = user_name;
-		this.password = password;
-		this.phone_number = phone_number;
-		this.email = email;
-		this.address = address;
-		this.created_on = created_on;
-		this.last_login_date = last_login_date;
-	}
-	public void setAddress(String address) {
-		this.address = address;
-	}
 	public Date getCreated_on() {
 		return created_on;
 	}
@@ -95,7 +85,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", user_name=" + user_name + ", password=" + password + ", phone_number="
-				+ phone_number + ", email=" + email + ", address=" + address + ", created_on=" + created_on
+				+ phone_number + ", email=" + email + ", address=" + ", created_on=" + created_on
 				+ ", last_login_date=" + last_login_date + "]";
 	}
 	
