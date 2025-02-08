@@ -10,28 +10,6 @@
 <script src="https://kit.fontawesome.com/e85887b45e.js" crossorigin="anonymous"></script>
 </head>
 <body>
-	<!-- <div class="login-container" id="login-container">
-        <h2>Login</h2>
-        <form action="loginUser" method="POST">
-            <div class="input-group">
-                <label for="username">User name</label>
-                <input type="text" id="username" name="username" required>
-            </div>
-            <div class="input-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <input type="hidden" name="redirectUrl" id="redirectUrl">
-            <button type="submit" class="btn">Sign In</button>
-        </form>
-        <div class="signup-link">
-            <p>Don't have an account?</p>
-            <a href="registerUser.jsp" class="btn-secondary">Sign Up</a>
-        </div>
-    </div>
-</body> -->
-
-	<div class="popup-overlay" id="popupOverlay"></div>
 	<div class="login-container" id="login-container">
 		<span class="popup-close" onClick="closeLoginPopup()">&times;</span>
 		<h2>Sign In</h2>

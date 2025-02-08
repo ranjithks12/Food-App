@@ -21,7 +21,6 @@ public class UserDaoImplementation implements UserDAO{
 	private ResultSet result = null;
 	private Statement statement = null;
 	public UserDaoImplementation() {
-//		MyConnector myConnector = MyConnector.getMyConnector();
 	}
 
 	@Override
@@ -34,7 +33,6 @@ public class UserDaoImplementation implements UserDAO{
 			pstatement.setString(2, user.getPassword());
 			pstatement.setLong(3, user.getPhone_number());
 			pstatement.setString(4, user.getEmail());
-//			pstatement.setString(5, user.getAddress());
 			return pstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

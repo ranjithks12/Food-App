@@ -20,7 +20,7 @@
 	User user = (User) session.getAttribute("loggedUser");
 	%>
 	<nav class="navbar">
-		<h1>FoodApp</h1>
+		<h1>BiteHub</h1>
 		<ul>
 			<li>
 				<a class="nav-link">

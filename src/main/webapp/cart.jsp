@@ -18,7 +18,7 @@
 <body>
 	<!-- Navbar -->
 	<nav class="navbar">
-		<h1>FoodApp</h1>
+		<h1>BiteHub</h1>
 		<ul>
 			<li>
 				<a class="nav-link">
@@ -41,8 +41,8 @@
 				</a>
 			</li>
 			<% if (user != null) { %>
-			<li>
-				<a href="profile.jsp" class="nav-link"> 
+			<li onclick="openProfileModal(); return false;">
+				<a class="nav-link"> 
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 						 stroke-width="1.5" stroke="currentColor" width="1.5em" height="1.5em">
  					 	 <path stroke-linecap="round" stroke-linejoin="round"
@@ -149,5 +149,6 @@
 		<p>&copy; 2024 Restaurant. All Rights Reserved.</p>
 	</footer>
 	<jsp:include page="logIn.jsp" />
+    <jsp:include page="profile.jsp"/>
 </body>
 </html>

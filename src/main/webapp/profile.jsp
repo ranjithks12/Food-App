@@ -59,7 +59,7 @@
 				</div>
 			</div>
 		<div>
-			<button class="sign-out">Sign Out</button>
+			 <button onclick="signOut()" class="sign-out">Sign Out</button>
 		</div>
 		</div>
 		</div>

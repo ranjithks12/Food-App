@@ -1,8 +1,8 @@
- .form-container {
+ .address-form-container {
 	position: fixed;
 	top: 0%;
     height : 100vh;	
-	right: -100%;
+	left: -100%;
     background-color: #FFFFFF; /* White background for the container */
     padding: 40px;
     border-radius: 0px;
@@ -14,14 +14,14 @@
 }
 
 .popup-close  {
-	float: left;
+	float: right;
 	cursor: pointer;
 	font-size: 25px;
 	font-weight: bold;
-	color: #333;
+	color: black;
 }
 /* Form heading */
-.form-container h2 {
+.address-form-container h2 {
 	text-align: left;
     font-size: 28px;
     color: #800080; 
