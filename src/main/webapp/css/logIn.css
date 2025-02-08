@@ -106,14 +106,6 @@
 	font-size: 14px;
 }
 
-/* Sign up button */
-.btn-secondary {
-	color: #229799;
-	cursor: pointer;
-	transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s
-		ease;
-}
-
 
 .login-container.show {
 	right: 0; /* Slide into view */
