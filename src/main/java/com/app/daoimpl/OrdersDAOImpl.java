@@ -28,9 +28,6 @@ public class OrdersDAOImpl implements OrdersDAO {
 	public int saveOrder(Orders order, Connection connection) {
 		int result = 0;
 		try {
-//			myConnector = MyConnector.getMyConnector();
-//			connection = myConnector.connect();
-//			connection.setAutoCommit(false);
 			pstatement = connection.prepareStatement(SAVE_ORDER);
 			pstatement.setString(1, ORDERID);
 			pstatement.setInt(2, order.getUserID());
@@ -41,9 +38,6 @@ public class OrdersDAOImpl implements OrdersDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} 
-//		finally {
-//			MyConnector.getMyConnector().disConnect(null, pstatement, null);
-//		}
 		return result;
 	}
 	

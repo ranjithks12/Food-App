@@ -119,11 +119,14 @@ form {
 
 .quantity {
     width: 50px; /* Minimized input size */
-    padding: 5px;
-    border: 1px solid #C4DAD2;
-    border-radius: 4px;
+    padding: 10px;
+    border: none;
     text-align: center;
 }
+.quantity-label{
+	 font-weight: bolder;
+}
+
 
 .card:hover {
     transform: translateY(-5px);
@@ -133,19 +136,26 @@ form {
 
 /* Add to Cart Button */
 .add-to-cart {
-    background-color: #800080;
-    color: white;
+    background-color: none;
+    color: #800080;
     padding: 0.5rem 1rem;
-    border: none;
+    border: 1.8px solid #800080;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 0.9rem;
+    font-weight: bolder;
 }
 
 .add-to-cart:hover {
-    background-color: #bf40bf;
-  	color: #F5F5F5;
+  	color: #bf40bf;
+  	border: 1.8px solid #bf40bf;
 }
+
+.content-buttons{
+	flex-direction: column;
+	margin-left: 20px;
+}
+
 
 .popup-overlay  {
 	display: none;
@@ -198,6 +208,10 @@ p {
     display: flex;
     justify-content: center;
     gap: 1em;
+}
+.no-item-handel{
+	align-content: center;
+	height: 65vh;
 }
 
 .btn {

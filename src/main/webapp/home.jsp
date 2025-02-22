@@ -89,12 +89,13 @@
 		</ul>
 	</nav>
 
-	<h1 class="section-title">Featured Restaurants</h1>
-	<div class="restaurant-list">
-		<%
+	<%
 		@SuppressWarnings("unchecked")
 		List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
-		if (restaurantList != null) {
+		if (restaurantList != null) { %>
+		<h1 class="section-title">Featured Restaurants</h1>
+	<div class="restaurant-list">
+		<%
 			for (Restaurant restaurant : restaurantList) {
 		%>
 		<div class="card">
@@ -121,7 +122,10 @@
 		</div>
 		<% }
 		} else { %>
-		<h1 class="section-title">Currently No restaurants available!</h1>
+			<div class="no-res-handel">
+				<h1 class="section-title">Currently No restaurants available!</h1>
+			</div>
+		
 		<% } %>
     </div>
     
