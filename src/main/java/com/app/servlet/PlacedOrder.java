@@ -22,7 +22,7 @@ import com.app.util.MyConnector;
 
 @SuppressWarnings("serial")
 @WebServlet("/placeorder")
-public class PalcedOrder extends HttpServlet {
+public class PlacedOrder extends HttpServlet {
 	MyConnector myConnector = null;
 	Connection connection = null;
 
@@ -37,17 +37,6 @@ public class PalcedOrder extends HttpServlet {
 		OrdersDAOImpl order = new OrdersDAOImpl();
 		OrderItemDAOImpl orderItem = new OrderItemDAOImpl();
 		Orders orderObject = new Orders();
-//		orderObject.setUserID(1);
-//		orderObject.setRestaurentId(1);
-//		orderObject.setPaymentMethodId(2);
-//		orderObject.setPaymentMethod("Cash");
-//		orderObject.setPayedAmount(120.09f);
-//		
-		OrderItem orderItemObj = new OrderItem();
-//		orderItemObj.setMenuId(1);
-//		orderItemObj.setItemName("Butter Chicken");
-//		orderItemObj.setQuantity(3);
-//		orderItemObj.setSubtotal(120.0f);
 
 		if (user != null) {
 			orderObject.setUserID(user.getUser_id());
@@ -72,6 +61,8 @@ public class PalcedOrder extends HttpServlet {
 					Map<Integer, CartItem> items = cartItems.getItems();
 					boolean allItemsSaved = true;
 					for (CartItem item : items.values()) {
+						OrderItem orderItemObj = new OrderItem();
+						orderItemObj.setOrderId(OrdersDAOImpl.ORDERID);
 						orderItemObj.setMenuId(item.getMenuId());
 						orderItemObj.setItemName(item.getName());
 						orderItemObj.setQuantity(item.getQuantity());
@@ -80,34 +71,28 @@ public class PalcedOrder extends HttpServlet {
 						if (saveOrderItemReult != 1) {
 							allItemsSaved = false;
 							break;
-						}
+						} 
+						
 					}
 					if (allItemsSaved) {
-						connection.commit(); // Commit transaction
+						connection.commit();
 						resp.getWriter().write("Order Placed Successfully");
-//						resp.sendRedirect("home.jsp");
 					} else {
-						connection.rollback(); // Rollback if any order item fails
+						connection.rollback(); 
 						resp.getWriter().write("Failed to place order. Transaction rolled back.");
 					}
-					
-//				for(CartItem item : items.values()) {
-//					cartItems.removeItem(item.getMenuId());
-//				}
-//					resp.sendRedirect("home.jsp");
 				}
 
-//			session.removeAttribute("cart");
 			} else {
-				connection.rollback(); // Rollback if order insertion fails
+				connection.rollback();
 		        resp.getWriter().write("Failed to insert order. Transaction rolled back.");
 		    }
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			MyConnector.getMyConnector().disConnect(null, null, connection);
 		}
-
 	}
 
 }

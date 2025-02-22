@@ -8,7 +8,6 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: #F7F9F9; 
   padding-top: 5rem; 
-  height: 100vh;
 }
 
 .cart-header{
@@ -82,6 +81,10 @@ body {
     margin-bottom: 12px;
 }
 
+.quantity-number{
+	border: none;
+}
+
 .quantity button {
     width: 32px;
     height: 32px;
@@ -134,7 +137,13 @@ body {
   background-color: #bf40bf;
   color: #F5F5F5;
 }
-
+.totalAmount{
+	outline: none;
+	font-size: 1.5rem;
+    font-weight: bold;
+	border: none;
+	text-decoration: none;
+}
 /* Checkout Button */
 .checkout-section {
     position: fixed; /* Keep the checkout section fixed at the bottom */
@@ -171,5 +180,10 @@ body {
 .checkout-btn:hover {
     background-color: #3bbf99;
     transform: translateY(-2px);
+}
+
+.no-cart-item-handel{
+	align-content: center;
+	height: 76vh;	
 }
 

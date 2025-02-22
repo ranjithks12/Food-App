@@ -158,6 +158,16 @@
     align-items: center;
 }
 
+.payment.payment-content {
+	font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.dropdown-value {
+	outline: none;
+	border: none;
+}
+
 /* Button styles */
 .buttons {
     padding: 0.7em 1.2em;

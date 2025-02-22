@@ -14,6 +14,7 @@ document.querySelectorAll('input[name="address"]').forEach((radio) => {
     radio.addEventListener("click", (event) => {
         console.log("Clicked:", event.target.value);
 		document.getElementById("placeorder-btn").style.display = "block";
+		document.getElementById("slect-address").style.display = "block";
     });
 });
 

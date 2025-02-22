@@ -41,6 +41,7 @@
 				</a>
 			</li>
 			<% if (user != null) { %>
+			<jsp:include page="profile.jsp"/>
 			<li onclick="openProfileModal(); return false;">
 				<a class="nav-link"> 
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -106,7 +107,7 @@
 						<div class="quantity">
 							<button type="submit" name="action" value="decrease"
 								class="decrease">-</button>
-							<input type="number" name="quantity"
+							<input class="quantity-number" type="number" name="quantity"
 								value="<%=item.getQuantity()%>" readonly>
 							<button type="submit" name="action" value="increase"
 								class="increase">+</button>
@@ -114,7 +115,7 @@
 					</form>
 				</div>
 				<p class="subTotal">
-					&#8377;<%=String.format("%.2f", item.getSubTotal())%></p>
+					&#8377; <%=String.format("%.2f", item.getSubTotal())%></p>
 				<form action="cart" method="post">
 					<input type="hidden" name="menuItemId"
 						value="<%=item.getMenuId()%>">
@@ -131,7 +132,7 @@
 		<form method="post" action="checkout">
 		
 		<p class="total-amount">
-			Total Amount: &#8377; <input type="text" name="totalAmount" value="<%=String.format("%.2f", totalAmount)%>" readonly></p>
+			Total Amount: &#8377; <input type="text" name="totalAmount" class="totalAmount" value="<%=String.format("%.2f", totalAmount)%>" readonly></p>
 			<button class="checkout-btn" type="submit">Proceed to
 				Checkout</button>
 		</form>
@@ -139,7 +140,9 @@
 	<%
 	} else {
 	%>
-	<h2 class="cart-header">Your cart is empty</h2>
+		<div class="no-cart-item-handel">
+			<h1 class="cart-header">Your cart is empty</h1>
+		</div>
 	<%
 	}
 	%>
@@ -149,6 +152,5 @@
 		<p>&copy; 2024 Restaurant. All Rights Reserved.</p>
 	</footer>
 	<jsp:include page="logIn.jsp" />
-    <jsp:include page="profile.jsp"/>
 </body>
 </html>

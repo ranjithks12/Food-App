@@ -63,41 +63,10 @@ User user = (User) session.getAttribute("loggedUser");
 			</li>
 		</ul>
 	</nav>
-<%-- 	 <% if(user != null) { %> --%>
-	 
-<%-- 	<section class="content">
-		<div class="conttent_info">
-			<button class="buttons">Add Address</button>
-		</div>
-		<form action="placeorder" method="post">
-			<div class="conttent_info payment">
-				<div>
-					<p>Payable amount:</p> <label> <%= amount%></label>
-					<label>Select payment method: </label> 
-					<select class="paymentdropdown" name="dropdown-value">
-						<% for (PaymentMethod paymentMethod : paymentMethods) { %>
-						<option class="dropdown-value"><%=paymentMethod.getPaymentMethodName()%></option>
-						<% } %>
-					</select>
-				</div>
-				<div>
-					<button class="buttons">Place order</button>
-				</div>
-			</div>
-		</form>
-		 <% } else { %>
-		 <section class="content">
-		 
-	 	<p> Please Sign in to continue to complete order </p>
-	 	<button onclick="openLoginModal(); return false;">Sign in</button>
-		 </section>
-	 <% } %>
-	</section>
-	 <% } else { %>
-	 	<p> No payment methods available </p>  --%>
-	 	
+ 	
 	 <% if (user != null) { %>
 	 <div class="content">
+	 
         <div class="content information">
             <% if(addresses != null && !addresses.isEmpty()) { %>
             <div class="address-container">      
@@ -114,39 +83,40 @@ User user = (User) session.getAttribute("loggedUser");
                                                
             <% } %>
         </div>
-            	<p> Select any address to deliver. </p>
+            	<p id="select-address"> Select any address to deliver. </p>
             <% } else { %>
-            	<p> Add the address to deliver. </p>
+            	<p id="select-address"> Add the address to deliver. </p>
             <% } %>
             
             <div>
                 <button class="buttons" onclick="showAddressModal(); return false;">Add address</button>
-
             </div>          
 
         </div>
         <div class="content payment">
+        <form action="placeorder" method="post">
             <div>
-                <span>Payable Amount:</span><span> <%= amount%></span>
+                <span class="payment-content">Payable Amount: &#8377;</span><span class="payment-content"><%= amount%></span>
             </div>
             <% if (paymentMethods != null) { %>
             <div>
-                <label>Select payment method: </label>
-                <select>
+                <label class="payment-content">Select payment method: </label>
+                <select name="dropdown-value">
                    <% for (PaymentMethod paymentMethod : paymentMethods) { 
                    		if(paymentMethod.isAvailable()) { %>
-						<option class="dropdown-value"><%=paymentMethod.getPaymentMethodName()%></option>
+						<option class="payment-content dropdown-value"><%=paymentMethod.getPaymentMethodName()%></option>
 					<% } } %>
                 </select>
             </div>
                <% } %>
             <button class="buttons" id="placeorder-btn">Place order</button>
+        </form>
         </div>
    </div>
    <% } else { %>
    		<div class="content">
 	 		<p> Please Sign in to continue to complete order </p>
-		 	<button onclick="openLoginModal(); return false;">Sign in</button>
+		 	<button class="buttons" onclick="openLoginModal(); return false;">Sign in</button>
 		</div>
    <% } %>
 

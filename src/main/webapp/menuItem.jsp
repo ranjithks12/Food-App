@@ -109,26 +109,37 @@ User user = (User) session.getAttribute("loggedUser");
 			<div class="content">
 				<h2 class="item-name"><%=menuItem.getItemName()%></h2>
 				<p class="description"><%=menuItem.getItemDescription()%></p>
-				<p class="availability"><%=menuItem.isAvailable() ? "Available" : "Not Available"%></p>
+				<%-- <p class="availability"><%=menuItem.isAvailable() ? "Available" : "Not Available"%></p> --%>
 				<p class="price">
-					Price:<%=menuItem.getPrice()%></p>
-				<form action="cart" method="post">
-					<label for="quantity">Quantity:</label> <input class="quantity"
-						type="number" name="quantity" min="1" value="1"> <input
-						type="hidden" name="menuItemId" value="<%=menuItem.getMenuId()%>">
-					<button class="add-to-cart" type="submit" name="action" value="add">Add to Cart</button>
-				</form>
+					 &#8377; <%=menuItem.getPrice()%></p>
 			</div>
+			<form action="cart" method="post">
+				<div class="content-buttons">
+					<div>
+						<label for="quantity" class="quantity-label">Quantity:</label>
+						<input class="quantity" type="number" name="quantity" min="1" value="1">
+					</div>
+					<div>
+						<input type="hidden" name="menuItemId"
+							value="<%=menuItem.getMenuId()%>">
+						<button class="add-to-cart" type="submit" name="action"
+							value="add">Add to Cart</button>
+					</div>
+
+				</div>
+			</form>
 		</div>
 		<%
 		}
         } else {
         	%>
-		<h2>
-			Currently No menu/items available for
-			<%=restaurant.getRestaurantName() %>
-			restaurant!
-		</h2>
+        	<div class="no-item-handel">
+				<h1>
+					Currently No menu/items available for
+					<%=restaurant.getRestaurantName() %>
+					restaurant!
+				</h1>
+			</div>
 		<%
         }
          %>
