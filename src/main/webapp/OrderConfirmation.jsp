@@ -67,74 +67,75 @@ Cart cartItems = (Cart) session.getAttribute("cart");
 	</nav>
  	
 	 <% if (user != null) { %>
-	<!--  <h1 style="margin-top: 2em; align-items: center;"> Order Summary</h1> -->
-	 <div class="content">
+	 <form action="placeorder" method="post">
+	 <div> 
+	 	<div class="page-header"> 
+	 		<h1>Order Summary</h1>
+	 	</div>
 	 
-        <div class="content information">
-            <% if(addresses != null && !addresses.isEmpty()) { %>
-            <div class="address-container">      
-            	<% for (Address address: addresses) { %>
-            <div class="addresses">
-                <input type="radio" name="address" id="address">
-                <div>
-                    <p><%= address.getArea() %></p>
-                    <p><%= address.getStreet() %></p>
-                    <p><%= address.getLandMark() %></p>
-                    <p><%= address.getCityAndState() %> - <%= address.getPostalCode() %></p>
-                </div>
-            </div>
-                                               
-            <% } %>
-        </div>
+		 <div class="content">
+        	<div class="content information">
+            	<% if(addresses != null && !addresses.isEmpty()) { %>
+            	<div class="address-container">      
+            		<% for (Address address: addresses) { %>
+            		<div class="addresses">
+                		<input type="radio" name="address" id="address" value="<%= address.getAddresId() %>">
+                		<div>
+                    		<p><%= address.getArea() %></p>
+                    		<p><%= address.getStreet() %></p>
+                    		<p><%= address.getLandMark() %></p>
+                    		<p><%= address.getCityAndState() %> - <%= address.getPostalCode() %></p>
+                		</div>
+            		</div>
+            		<% } %>
+        		</div>
             	<p id="select-address"> Select any address to deliver. </p>
-            <% } else { %>
-            	<p id="select-address"> Add the address to deliver. </p>
-            <% } %>
+            	<% } else { %>
+            		<p id="select-address"> Add the address to deliver. </p>
+            	<% } %>
             
-            <div>
-                <button class="buttons" onclick="showAddressModal(); return false;">Add address</button>
-            </div>          
-
-        </div>
-        <div class="content payment">
+           		<div>
+                	<button class="buttons" onclick="showAddressModal(); return false;">Add address</button>
+            	</div>          
+        	</div>
         
-        <table>
-        <tr> 
-        	<th> Item Name</th>
-        	<th> Quantity</th>
-        	<th> Total</th>
-        </tr>
-        <% Map<Integer, CartItem> items = cartItems.getItems();
-        for (CartItem item : items.values()) {
-        %>
-        	<tr> 
-        		<td> <%= item.getName() %></td>
-        		<td> <%= item.getQuantity() %></td>
-        		<td> <%= item.getSubTotal() %></td>
-        	</tr>
-        <%} %>
-        </table>
-        
-        
-        <form action="placeorder" method="post">
-            <div>
-                <span class="payment-content">Payable Amount: &#8377;</span><span class="payment-content"><%= amount%></span>
-            </div>
-            <% if (paymentMethods != null) { %>
-            <div>
-                <label class="payment-content">Select payment method: </label>
-                <select name="dropdown-value">
-                   <% for (PaymentMethod paymentMethod : paymentMethods) { 
+        	<div class="content payment">
+	        	<table>
+    		    	<tr> 
+        				<th> Item Name</th>
+        				<th> Quantity</th>
+        				<th> Total</th>
+        			</tr>
+        			<% Map<Integer, CartItem> items = cartItems.getItems();
+        			for (CartItem item : items.values()) { %>
+        			<tr> 
+        				<td> <%= item.getName() %></td>
+        				<td> <%= item.getQuantity() %></td>
+        				<td> <%= item.getSubTotal() %></td>
+        			</tr>
+        			<% } %>
+       		 	</table>
+       <!--  <form action="placeorder" method="post"> -->
+            	<div>
+                	<span class="payment-content">Payable Amount: </span><span class="payment-content payment-amount">  &#8377; <%= amount%></span>
+            	</div>
+            	<% if (paymentMethods != null) { %>
+            	<div>
+                	<label class="payment-content">Select payment method: </label>
+                	<select name="dropdown-value">
+                   	<% for (PaymentMethod paymentMethod : paymentMethods) { 
                    		if(paymentMethod.isAvailable()) { %>
-						<option class="payment-content dropdown-value"><%=paymentMethod.getPaymentMethodName()%></option>
-					<% } } %>
-                </select>
-            </div>
-               <% } %>
-            <button class="buttons" id="placeorder-btn">Place order</button>
-        </form>
+							<option class="dropdown-value"><%=paymentMethod.getPaymentMethodName()%></option>
+						<% } } %>
+                	</select>
+            	</div>
+               	<% } %>
+            	<button class="buttons" id="placeorder-btn">Place order</button>
+        	</div>
         </div>
-   </div>
+	</div>
+        </form>
+
    <% } else { %>
    		<div class="content">
 	 		<p> Please Sign in to continue to complete order </p>
@@ -150,6 +151,7 @@ Cart cartItems = (Cart) session.getAttribute("cart");
 		<p>&copy; 2024 FoodApp. All rights reserved.</p>
 	</footer>
 	<jsp:include page="logIn.jsp" />
+	<jsp:include page="profile.jsp" />
 	<jsp:include page="addAddress.jsp" />
 	<script src="js/address.js"></script>
 </body>

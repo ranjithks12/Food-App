@@ -86,6 +86,8 @@ public class UserDaoImplementation implements UserDAO {
 		return null;
 	}
 
+	
+	//Has to be developed
 	@Override
 	public int changePassword(User u, String email, String password) {
 		try {
