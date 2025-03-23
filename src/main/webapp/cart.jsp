@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ page import="com.app.model.Cart, java.util.Map, com.app.model.User"%>
+<%@ page import="com.app.model.Cart, java.util.Map, com.app.model.Restaurant, com.app.model.User"%>
 <%@ page import="com.app.model.CartItem"%>
 <!DOCTYPE html>
 <html>
@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="css/cartStyle.css">
 	<%
 	Cart items = (Cart) session.getAttribute("cart");
+	Restaurant restaurant = (Restaurant) session.getAttribute("restaurant");
 	User user = (User) session.getAttribute("loggedUser");
 	float totalAmount = 0.0f;
 	%>
@@ -96,10 +97,24 @@
 
 	<div class="container">
 		<div class="cart-item">
-			<div class="itemImage"></div>
+			<div class="itemImage">
+			<img
+					src="${pageContext.request.contextPath}/images/<%= restaurant.getRestaurantName()%>/item_images/<%= item.getItemImage()%>.jpg"
+					alt="<%= item.getName()%>" />
+			</div>
 
 			<div class="content">
 				<h2 class="item-name"><%=item.getName()%></h2>
+				
+				<p class="subTotal">
+					&#8377; <%=String.format("%.2f", item.getSubTotal())%></p>
+				<form action="cart" method="post">
+					<input type="hidden" name="menuItemId"
+						value="<%=item.getMenuId()%>">
+					<button class="delete" type="submit" name="action" value="delete">Delete</button>
+				</form>
+			</div>
+			<div>
 				<div>
 					<form method="post" action="cart">
 						<input type="hidden" name="menuItemId"
@@ -114,13 +129,7 @@
 						</div>
 					</form>
 				</div>
-				<p class="subTotal">
-					&#8377; <%=String.format("%.2f", item.getSubTotal())%></p>
-				<form action="cart" method="post">
-					<input type="hidden" name="menuItemId"
-						value="<%=item.getMenuId()%>">
-					<button class="delete" type="submit" name="action" value="delete">Delete</button>
-				</form>
+			
 			</div>
 		</div>
 

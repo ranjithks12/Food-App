@@ -7,10 +7,17 @@ public class CartItem {
 	private float price;
 	private int quantity;
 	private float subTotal;
+	private String itemImage;
+	public String getItemImage() {
+		return itemImage;
+	}
+	public void setItemImage(String itemImage) {
+		this.itemImage = itemImage;
+	}
 	public CartItem() {
 		super();
 	}
-	public CartItem(int menuId, int restaurantId, String name, float price, int quantity, float subTotal) {
+	public CartItem(int menuId, int restaurantId, String name, float price, int quantity, float subTotal,String itemImage) {
 		super();
 		this.menuId = menuId;
 		this.restaurantId = restaurantId;
@@ -18,14 +25,16 @@ public class CartItem {
 		this.price = price;
 		this.quantity = quantity;
 		this.subTotal = subTotal;
+		this.itemImage = itemImage;
 	}
-	public CartItem(int restaurantId, String name, float price, int quantity, float subTotal) {
+	public CartItem(int restaurantId, String name, float price, int quantity, float subTotal, String itemImage) {
 		super();
 		this.restaurantId = restaurantId;
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 		this.subTotal = subTotal;
+		this.itemImage = itemImage;
 	}
 	public int getMenuId() {
 		return menuId;

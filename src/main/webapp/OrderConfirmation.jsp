@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.List, com.app.model.PaymentMethod, com.app.model.User, com.app.model.Address"%>
+<%@ page import="com.app.model.Cart,java.util.Map, com.app.model.CartItem" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@ List<PaymentMethod> paymentMethods = (List<PaymentMethod>) session.getAttribute(
 List<Address> addresses = (List<Address>) session.getAttribute("addresses");
 float amount = (float) session.getAttribute("totalAmount");
 User user = (User) session.getAttribute("loggedUser");
+Cart cartItems = (Cart) session.getAttribute("cart");
  %>
 </head>
 <body>
@@ -65,6 +67,7 @@ User user = (User) session.getAttribute("loggedUser");
 	</nav>
  	
 	 <% if (user != null) { %>
+	<!--  <h1 style="margin-top: 2em; align-items: center;"> Order Summary</h1> -->
 	 <div class="content">
 	 
         <div class="content information">
@@ -94,6 +97,25 @@ User user = (User) session.getAttribute("loggedUser");
 
         </div>
         <div class="content payment">
+        
+        <table>
+        <tr> 
+        	<th> Item Name</th>
+        	<th> Quantity</th>
+        	<th> Total</th>
+        </tr>
+        <% Map<Integer, CartItem> items = cartItems.getItems();
+        for (CartItem item : items.values()) {
+        %>
+        	<tr> 
+        		<td> <%= item.getName() %></td>
+        		<td> <%= item.getQuantity() %></td>
+        		<td> <%= item.getSubTotal() %></td>
+        	</tr>
+        <%} %>
+        </table>
+        
+        
         <form action="placeorder" method="post">
             <div>
                 <span class="payment-content">Payable Amount: &#8377;</span><span class="payment-content"><%= amount%></span>

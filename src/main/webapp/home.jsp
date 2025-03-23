@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home - Restaurant Listings</title>
+<title>Home - BiteHub -Restaurant</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -22,18 +22,6 @@
 	<nav class="navbar">
 		<h1>BiteHub</h1>
 		<ul>
-			<li>
-				<a class="nav-link">
-					<input type="search">
-					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
-						viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-						width="1.5em" height="1.5em">
- 						<path stroke-linecap="round" stroke-linejoin="round"
-							d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-					</svg>
-				</a>
-			</li>
-			
 			<li>
 				<a href="cart.jsp"  class="nav-link">
 					<svg xmlns="http://www.w3.org/2000/svg"
@@ -89,11 +77,60 @@
 		</ul>
 	</nav>
 
+	<form action="" method="get">
+		<div class="search-bar">
+			<div class="search-group">
+				<input type="search" class="search-content" id="search-content" placeholder="Search your needs" />
+				<button  class="search-btn" type="submit"  onclick="divclicked()">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
+					viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+					width="1.5em" height="1.5em">
+ 					<path stroke-linecap="round" stroke-linejoin="round"
+					d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+					</svg>
+				</button>
+			</div>
+		</div>
+	</form>
+	
+	<div class = "hero-section">
+		<div class ="scrool-image"  id ="scrool-image" onclick="divclicked()">
+		<img class ="scrool-image" src="${pageContext.request.contextPath}/images/pizza.jpg" alt=""/>
+		</div>
+		
+		<div class ="scrool-image">
+		<img class ="scrool-image" src="${pageContext.request.contextPath}/images/burger.jpg" alt=""/>
+		</div>
+		
+		<div class ="scrool-image">
+		<img class ="scrool-image" src="${pageContext.request.contextPath}/images/cake.jpg" alt=""/>
+		</div>
+		
+		<div class ="scrool-image">
+		<img class ="scrool-image" src="${pageContext.request.contextPath}/images/lassi.jpg" alt=""/>
+		</div>
+		
+		<div class ="scrool-image">
+		<img class ="scrool-image" src="${pageContext.request.contextPath}/images/biriyani.jpg" alt=""/>
+		</div>
+		
+		<div class ="scrool-image"  id ="scrool-image" onclick="divclicked()">
+		</div>
+		
+		<div class ="scrool-image">
+		</div>
+		
+		<div class ="scrool-image">
+		</div>
+	</div>
+	
 	<%
 		@SuppressWarnings("unchecked")
 		List<Restaurant> restaurantList = (List<Restaurant>) session.getAttribute("restaurantList");
 		if (restaurantList != null) { %>
-		<h1 class="section-title">Featured Restaurants</h1>
+		
+		
+	<h1 class="section-title">Featured Restaurants</h1>
 	<div class="restaurant-list">
 		<%
 			for (Restaurant restaurant : restaurantList) {
@@ -134,6 +171,15 @@
 	</footer>
 	
     <jsp:include page="logIn.jsp" />
-    
+    <script type="text/javascript">
+    document.getElementById("search-content").addEventListener("input", function(e) {
+        this.value = this.value.replace(/[^a-zA-Z\s]/g, ""); 
+    });
+    function divclicked() {
+    	//let divElement = document.getElementById('scrool-image');
+    	console.log("Element clicked");
+    		
+	}
+    </script>
 </body>
 </html>

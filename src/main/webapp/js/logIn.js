@@ -16,6 +16,6 @@ window.onclick = function(event) {
 	let modal = document.getElementById("login-container");
 	if (event.target == modal) {
 		modal.style.display = "none";
-		overlayModel.style.display = "none";
+		//overlayModel.style.display = "none";
 	}
 };

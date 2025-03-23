@@ -29,7 +29,11 @@ public class LoginUser extends HttpServlet{
 				HttpSession session = req.getSession();
 				session.setAttribute("loggedUser", user);
 				resp.getWriter().write("User Logged Successfully");
-				resp.sendRedirect(redirectUrl);
+				if(redirectUrl.contains("OrderConfirmation")) {
+					req.getRequestDispatcher("/checkout").forward(req, resp);
+				} else {
+					resp.sendRedirect(redirectUrl);
+				}
 			}
 			else {
 				resp.sendRedirect("error.jsp");
