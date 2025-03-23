@@ -9,6 +9,13 @@ body {
   background-color: #F7F9F9; 
   padding-top: 5rem; 
 }
+.cart-header .total-amount{
+	color: #800080;
+}
+
+.page-content{
+	height: 100vh;
+}
 
 .cart-header{
 	margin-left: 1em;
@@ -114,6 +121,10 @@ body {
     background-color: #ffffff;
     pointer-events: none;
 }
+input{
+	color: green;
+}
+
 
 /* Subtotal styling */
 .subTotal {
@@ -148,10 +159,10 @@ body {
 }
 /* Checkout Button */
 .checkout-section {
-    position: fixed; /* Keep the checkout section fixed at the bottom */
+    /* position: fixed; */ /* Keep the checkout section fixed at the bottom */
     bottom: 2rem; /* Add space from the bottom of the screen */
-    right: 2rem; /* Align it to the right */
-    text-align: right; /* Align content within the section */
+   /*  right: 2rem; */ /* Align it to the right */
+    text-align: center; /* Align content within the section */
     background-color: #ffffff; /* Optional: Add a background to separate it */
     padding: 1rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add depth */
@@ -168,7 +179,7 @@ body {
 
 /* Checkout Button */
 .checkout-btn {
-    background-color: #48CFAD;
+    background-color: #800080;
     color: white;
     padding: 1rem 2rem;
     border: none;
@@ -180,7 +191,7 @@ body {
 }
 
 .checkout-btn:hover {
-    background-color: #3bbf99;
+    background-color: #bf40bf;
     transform: translateY(-2px);
 }
 
