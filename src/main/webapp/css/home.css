@@ -3,6 +3,76 @@ body {
   height: 100vh;
 }
 
+/* Search bar Styling   */
+.search-bar{
+	padding: 1em;
+    width: 90%;
+    height: 25%;
+    margin: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-group{
+	display: flex;
+	align-items: center;
+	background-color: #e6dde8;
+	padding-right: 1em;
+	border-radius: 35px;
+	width: 35%;
+}
+
+.search-content{
+	border: none;
+	width: 100%;
+	padding: 1.2em;
+	font-size: 17px;
+	background-color: transparent;
+} 
+
+.search-btn{
+	border: none;
+	background-color: transparent;
+}
+
+.search-content:focus {
+	border-color: #48CFCB;
+	outline: none;
+}
+
+
+/* Hero section styling with scroll images */
+.hero-section {
+    padding: 1em;
+    width: 90%;
+    height: 40%;
+    background-color: #e6dde8;
+    border-radius: 8px;
+    margin: 4em;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.scrool-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 8px;
+    margin-right: 10px;
+    flex: 0 0 auto;
+}
+
+.scrool-image:hover{
+	 transform: scale(1.01);
+}
+
+
+.hero-section::-webkit-scrollbar {
+    display: none;
+}
+
+
 /* Section title styling */
 .section-title {
   text-align: center;
@@ -47,8 +117,8 @@ body {
 	height: 195px;
 	object-fit: cover;
 	display: block;
-	border-radius: 8px 8px 0 0;/* Match the card's border radius for the top */
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);/* Add a subtle shadow for depth */
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .card:hover {
@@ -87,6 +157,28 @@ body {
 	height: 76vh;
 }
 
+/* .hero-section {
+	padding: 1em;
+	width: 90%;
+	height: 40%;
+	background-color: #e6dde8;
+	border-radius: 8px;
+	margin: 5em;
+	display: flex;
+    white-space: nowrap;
+ 	overflow-x: auto; 
+	overflow-y: hidden;
+} 
+
+.scrool-image {
+	width: 200px;
+	height: 200px;
+	background-color: #80ff80;
+	border-radius: 8px;
+	margin: 10px;
+} */
+
+
 /* .restaurant-rating{
 	background-color: green;
 	padding: 0.1em 0.3em;
@@ -113,8 +205,8 @@ body {
   text-align: center;
   overflow: hidden;
   white-space: nowrap;
-  width: 0; /* Initially hide text width */
-  animation: typing 3s steps(30, end) forwards; /* Only typing animation */
+  width: 0;
+  animation: typing 3s steps(30, end) forwards; 
   margin-top: 1em;
 }
 

@@ -81,7 +81,8 @@ public class CartServlet extends HttpServlet {
 				} else {
 					if (menuItem != null) {
 						CartItem item = new CartItem(menuItem.getMenuId(), menuItem.getRestaurantId(),
-								menuItem.getItemName(), menuItem.getPrice(), quantity, quantity * menuItem.getPrice());
+								menuItem.getItemName(), menuItem.getPrice(), quantity, quantity * menuItem.getPrice(),
+								menuItem.getImagePath());
 						cart.addItem(item);
 						return true;
 					}
@@ -89,7 +90,8 @@ public class CartServlet extends HttpServlet {
 			} else {
 				if (menuItem != null) {
 					CartItem item = new CartItem(menuItem.getMenuId(), menuItem.getRestaurantId(),
-							menuItem.getItemName(), menuItem.getPrice(), quantity, quantity * menuItem.getPrice());
+							menuItem.getItemName(), menuItem.getPrice(), quantity, quantity * menuItem.getPrice(),
+							menuItem.getImagePath());
 					cart.addItem(item);
 					return true;
 				}

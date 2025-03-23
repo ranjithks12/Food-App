@@ -36,7 +36,7 @@ body {
     justify-content: space-between;
     background-color: #ffffff;
     width: 90%; /* Increase the width of each card */
-    margin: 1rem 0;
+    margin-top: 0.5rem;
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
@@ -50,14 +50,16 @@ body {
 
 /* Styling for the item image */
 .itemImage {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
-    background-color: #e9efec; /* Placeholder color */
+    flex: 1;
+    max-width: 100px; /* Restricting image width */
+    text-align: center;
+    margin-right: 1em;
+}
+.itemImage img{
+	width: 100%;
+    height: auto;
     border-radius: 8px;
-    background-size: cover;
-    background-position: center;
-    margin-right: 16px;
+    object-fit: cover;
 }
 
 /* Content styling */

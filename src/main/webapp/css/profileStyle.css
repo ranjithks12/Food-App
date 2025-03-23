@@ -79,3 +79,12 @@
   	color: #F5F5F5;
     transform: scale(1.02);
 }
+
+input{
+	background-color: transparent;
+	border: none;
+}
+
+input:focus {
+	outline: none;
+}

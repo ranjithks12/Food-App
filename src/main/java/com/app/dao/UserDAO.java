@@ -9,4 +9,5 @@ public interface UserDAO {
 	User fetchUserByUsername(String username);
 	List<User> fetchAllUsers();
 	int changePassword(User u, String email, String password);
+	int updateUser(User user);
 }
