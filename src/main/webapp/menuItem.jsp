@@ -81,10 +81,12 @@ User user = (User) session.getAttribute("loggedUser");
 	</nav>
 
 	<!-- Main Content -->
+    <div class="restaurant-info"> 
+    	<img class="restaurant-img" src="${pageContext.request.contextPath}/images/<%= restaurant.getRestaurantName()%>/<%= restaurant.getImagePath()%>.jpg" alt="<%= restaurant.getRestaurantName()%>"/>
+    	<%-- <p> <%= restaurant.getCusineType() %></p> --%>
+    </div>
 	<div class="container">
-
-		<%
-   
+	<%
     if(menuItemList != null){
     	for(MenuItem menuItem : menuItemList){
     %>

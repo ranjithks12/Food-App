@@ -34,10 +34,11 @@ body {
 .search-btn{
 	border: none;
 	background-color: transparent;
+	cursor: pointer;
+	padding-left: 1em;
 }
 
 .search-content:focus {
-	border-color: #48CFCB;
 	outline: none;
 }
 
@@ -83,7 +84,7 @@ body {
 /* Restaurant list styling */
 .restaurant-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
   gap: 2em;
   padding: 2em;
 }

@@ -21,11 +21,12 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 	private PreparedStatement pstatement = null;
 	private static final String FETCH_ALL = "SELECT * FROM `RESTAURANT`";
 	private static final String FETCH_BY_ID = "SELECT * FROM `RESTAURANT` WHERE `RESTAURANTID`=?";
-
+	private static final String GET_RESTAURANT_BY_SEARCH_STRING = "SELECT * FROM `RESTAURANT` WHERE `RESTAURANTNAME` LIKE ?";
+	private static List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+	
 	@Override
 	public List<Restaurant> getAllRestaurants() {
-
-		List<Restaurant> restaurantList = new ArrayList<Restaurant>();
+		restaurantList.clear();
 		try {
 			myConnector = MyConnector.getMyConnector();
 			connection = myConnector.connect();
@@ -65,6 +66,27 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 			MyConnector.getMyConnector().disConnect(result, statement, connection);
 		}
 		return null;
+	}
+	
+	@Override
+	public List<Restaurant> getRestaurantBySearchString(String searchString) {
+		restaurantList.clear();
+		try {
+			connection = MyConnector.getMyConnector().connect();
+			pstatement =  connection.prepareStatement(GET_RESTAURANT_BY_SEARCH_STRING);
+			pstatement.setString(1, "%" + searchString + "%");
+			result = pstatement.executeQuery();
+			while (result.next()) {
+				restaurantList.add(new Restaurant(result.getInt("restaurantId"), result.getString("restaurantName"), 
+						result.getInt("deliveryTime"),  result.getString("cusineType"), result.getFloat("ratings"),
+						result.getString("address"), result.getBoolean("isActive"), result.getString("imagePath")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MyConnector.getMyConnector().disConnect(result, pstatement, connection);
+		}
+		return !restaurantList.isEmpty() ? restaurantList : null;
 	}
 
 }

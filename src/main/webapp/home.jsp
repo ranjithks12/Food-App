@@ -77,10 +77,10 @@
 		</ul>
 	</nav>
 
-	<form action="" method="get">
+	<form action="search" method="get">
 		<div class="search-bar">
 			<div class="search-group">
-				<input type="search" class="search-content" id="search-content" placeholder="Search your needs" />
+				<input type="search" class="search-content" id="search-content" name="searchString" placeholder="Search your needs" required="required"/>
 				<button  class="search-btn" type="submit"  onclick="divclicked()">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
 					viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
