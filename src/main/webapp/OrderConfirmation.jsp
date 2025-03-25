@@ -134,11 +134,11 @@ Cart cartItems = (Cart) session.getAttribute("cart");
         	</div>
         </div>
 	</div>
-        </form>
+</form>
 
    <% } else { %>
    		<div class="content">
-	 		<p> Please Sign in to continue to complete order </p>
+	 		<p class="payment-content"> Please Sign in to continue to complete order </p>
 		 	<button class="buttons" onclick="openLoginModal(); return false;">Sign in</button>
 		</div>
    <% } %>
@@ -151,7 +151,6 @@ Cart cartItems = (Cart) session.getAttribute("cart");
 		<p>&copy; 2024 FoodApp. All rights reserved.</p>
 	</footer>
 	<jsp:include page="logIn.jsp" />
-	<jsp:include page="profile.jsp" />
 	<jsp:include page="addAddress.jsp" />
 	<script src="js/address.js"></script>
 </body>

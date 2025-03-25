@@ -14,7 +14,7 @@ body {
 }
 
 .page-content{
-	height: 100vh;
+	height: 69vh;
 }
 
 .cart-header{
@@ -80,7 +80,6 @@ body {
     color: #16423C;
     margin-bottom: 8px;
 }
-
 
 /* Quantity controls */
 .quantity {

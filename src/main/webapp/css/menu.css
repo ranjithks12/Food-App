@@ -11,6 +11,17 @@ body {
   padding-top: 5rem;
 }
 
+.restaurant-info{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.restaurant-img{
+	width: 25%;
+	height: 25%;
+}
+
+
 /* Main Container */
 .container {
     display: flex;

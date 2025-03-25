@@ -30,7 +30,7 @@
 				</a>
 			</li>
 			<% if (user != null) { %>
-			<jsp:include page="profile.jsp"/>
+			
 			<li onclick="openProfileModal(); return false;">
 				<a class="nav-link"> 
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -125,8 +125,8 @@
 	%>
 	<div class="checkout-section">
 		<form method="post" action="checkout">
-		<label class="total-amount"> Total Amount: </label>
-			<input type="text" name="totalAmount" class="totalAmount" value=" &#8377;<%= String.format("%.2f", totalAmount)%>" readonly>
+		<label class="total-amount"> Total Amount:  &#8377;</label>
+			<input type="text" name="totalAmount" class="totalAmount" value="<%= String.format("%.2f", totalAmount)%>" readonly>
 			<button class="checkout-btn" type="submit">Proceed to Checkout</button>
 		</form>
 	</div>
