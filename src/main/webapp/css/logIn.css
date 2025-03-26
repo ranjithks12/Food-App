@@ -109,3 +109,10 @@
 .login-container.show {
 	right: 0; /* Slide into view */
 }
+.hide{
+	margin-right: 1em;
+	display: none;
+}
+.show{
+	margin-right: 1em;
+}
