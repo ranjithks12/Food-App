@@ -48,8 +48,6 @@ body {
     padding: 1em;
     width: 90%;
     height: 40%;
-    background-color: #e6dde8;
-    border-radius: 8px;
     margin: 4em;
     display: flex;
     overflow-x: auto;
@@ -109,9 +107,21 @@ body {
 	align-items: flex-start;
 }
 .content{
+	width: 100%;
 	display: flex;
-	gap: 2em;
+    align-items: center;
+    gap: 1.5em;
+    font-weight: bold;
+    font-size: 14px;
 }
+
+.icon-info{
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.2em;
+}
+
 
 .card .restaurant-image  {
 	width: 100%;
@@ -120,6 +130,7 @@ body {
 	display: block;
 	border-radius: 8px 8px 0 0;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+	
 }
 
 .card:hover {
@@ -158,33 +169,25 @@ body {
 	height: 76vh;
 }
 
-/* .hero-section {
-	padding: 1em;
-	width: 90%;
-	height: 40%;
-	background-color: #e6dde8;
-	border-radius: 8px;
-	margin: 5em;
+.star {
+    width: 20px;
+    height: 20px;
+   	background-color: #4CAF50;
+    border-radius: 50%;
+    font-weight: bold;
+    font-size: 14px;
+}
+.rating-star{
+	width: 18px;
+    height: 18px;
+    fill: white;
+}
+.restaurant-rating{
 	display: flex;
     white-space: nowrap;
- 	overflow-x: auto; 
-	overflow-y: hidden;
-} 
-
-.scrool-image {
-	width: 200px;
-	height: 200px;
-	background-color: #80ff80;
-	border-radius: 8px;
-	margin: 10px;
-} */
-
-
-/* .restaurant-rating{
-	background-color: green;
-	padding: 0.1em 0.3em;
-	border-radius: 2px;
-} */
+    justify-content: center;
+    align-items: center;
+}
 
 /* Card Fade-in Animation */
 @keyframes fadeInUp {
