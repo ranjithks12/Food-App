@@ -27,7 +27,8 @@ public class RegisterUser extends HttpServlet{
 		UserDaoImplementation userDao = new UserDaoImplementation();
 		int status = userDao.addUser(user);
 		if(status != 0) {
-			resp.sendRedirect("home.jsp#loginPopup");
+			req.getSession().setAttribute("showLoginPopup", true);
+			resp.sendRedirect("home.jsp");
 		}
 		else {
 			resp.sendRedirect("error.jsp");

@@ -187,14 +187,15 @@
 	
     <jsp:include page="logIn.jsp" />
     <script type="text/javascript">
-    document.getElementById("search-content").addEventListener("input", function(e) {
-        this.value = this.value.replace(/[^a-zA-Z\s]/g, ""); 
-    });
-    function divclicked() {
-    	//let divElement = document.getElementById('scrool-image');
-    	console.log("Element clicked");
-    		
-	}
+    	document.getElementById("search-content").addEventListener("input", function(e) {
+        	this.value = this.value.replace(/[^a-zA-Z\s]/g, ""); 
+    	});
+    	window.onload =  function() {
+    		<% if(session.getAttribute("showLoginPopup") != null ) { %>
+    			openLoginModal();
+    			<% session.removeAttribute("showLoginPopup");   
+             } %>
+		};
     </script>
 </body>
 </html>
