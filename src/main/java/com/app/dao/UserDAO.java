@@ -10,4 +10,5 @@ public interface UserDAO {
 	List<User> fetchAllUsers();
 	int changePassword(User u, String email, String password);
 	int updateUser(User user);
+	boolean hasAdminAccess(User user);
 }

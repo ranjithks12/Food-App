@@ -10,6 +10,8 @@ public class User {
 	private String email;
 	private Date created_on;
 	private Date last_login_date;
+	private String role;
+
 	public User() {
 		super();
 	}
@@ -20,7 +22,7 @@ public class User {
 		this.email = email;
 	}
 	public User(String user_name, String password, long phone_number, String email, Date created_on,
-			Date last_login_date) {
+			Date last_login_date, String role) {
 		super();
 		this.user_name = user_name;
 		this.password = password;
@@ -28,9 +30,10 @@ public class User {
 		this.email = email;
 		this.created_on = created_on;
 		this.last_login_date = last_login_date;
+		this.role = role;
 	}
 	public User(int user_id, String user_name, String password, long phone_number, String email,
-			Date created_on, Date last_login_date) {
+			Date created_on, Date last_login_date, String role) {
 		super();
 		this.user_id = user_id;
 		this.user_name = user_name;
@@ -39,6 +42,7 @@ public class User {
 		this.email = email;
 		this.created_on = created_on;
 		this.last_login_date = last_login_date;
+		this.role = role;
 	}
 	public int getUser_id() {
 		return user_id;
@@ -81,6 +85,12 @@ public class User {
 	}
 	public void setLast_login_date(Date last_login_date) {
 		this.last_login_date = last_login_date;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	@Override
 	public String toString() {
