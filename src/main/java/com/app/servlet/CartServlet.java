@@ -33,7 +33,8 @@ public class CartServlet extends HttpServlet {
 			if(isAdded) {
 				resp.sendRedirect("menuItem.jsp");
 			} else {
-				resp.sendRedirect("menuItem.jsp#popupcontainer");
+				session.setAttribute("showPopup", true);
+				resp.sendRedirect("menuItem.jsp");
 //				resp.sendRedirect("menuItem.jsp?showPopup=true");
 			}
 		} else if ("decrease".equals(action)) {

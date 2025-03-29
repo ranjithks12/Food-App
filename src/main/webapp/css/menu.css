@@ -180,9 +180,9 @@ form {
 }
 
 .popupcontainer{
-    display: block;
+    display: none;
     position: fixed;
-    top: 25%;
+    top: 26%;
     left: 50%;
     border-radius: 8px;
     transform: translate(-50%, -50%);
@@ -202,8 +202,8 @@ form {
 }
 
 h2 {
-    margin-bottom: 1em;
-    font-size: 1rem;
+    margin-bottom: 0.4em;
+    font-size: 1.5rem;
     color: #333333;
     text-align: center;
 }
@@ -231,12 +231,12 @@ p {
     border-radius: 5px;
     font-size: 0.9rem;
     font-weight: bold;
-    background-color: #229799;
+    background-color: #800080;
     color: #ffffff;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-    background-color: #1d7a7b;
+    background-color: #bf40bf;
 }
