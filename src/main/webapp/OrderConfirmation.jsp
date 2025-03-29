@@ -152,6 +152,14 @@ Cart cartItems = (Cart) session.getAttribute("cart");
 	</footer>
 	<jsp:include page="logIn.jsp" />
 	<jsp:include page="addAddress.jsp" />
+	<jsp:include page="confPopup.jsp"/>
+	<script type="text/javascript">
+		window.onload = function( ){
+			<% if(session.getAttribute("showPopup") != null) { %>
+				displayPopUp();
+			<% session.removeAttribute("showPopup"); } %>
+		}
+	</script>
 	<script src="js/address.js"></script>
 </body>
 </html>

@@ -1,0 +1,97 @@
+.overlay-content{
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content{
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 200px;
+    background-color: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.confirm-circle{
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #800080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    animation: circle-pop 0.4s ease-out forwards;
+}
+
+.confirm-circle svg {
+    display: block;
+    width: 30px;
+    height: 30px;
+    stroke: white;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: draw-check 0.4s ease-out 0.3s forwards;
+}
+
+label{
+    font-size: 20px;
+    font-weight: bold;
+}
+.btn{
+    border: none;
+    width: auto;
+    margin-top: 1.8em;
+    padding: .9em 2.3em;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1em;
+    color: #fff;
+    background-color: #800080;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #bf40bf;
+    color: #F5F5F5;
+  }
+.star {
+    width: 20px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50%;
+}
+.size-6{
+    color: #fff;
+}
+
+@keyframes circle-pop {
+    0% { transform: translateX(-50%) scale(0); opacity: 0; }
+    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+@keyframes draw-check {
+    0% { stroke-dasharray: 50; stroke-dashoffset: 50; }
+    100% { stroke-dasharray: 50; stroke-dashoffset: 0; }
+}

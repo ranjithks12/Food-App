@@ -76,7 +76,9 @@ public class PlacedOrder extends HttpServlet {
 					}
 					if (allItemsSaved) {
 						connection.commit();
-						resp.getWriter().write("Order Placed Successfully");
+						session.setAttribute("showPopup", true);
+						session.setAttribute("trnId", OrdersDAOImpl.ORDERID);
+						resp.sendRedirect("OrderConfirmation.jsp");
 					} else {
 						connection.rollback(); 
 						resp.getWriter().write("Failed to place order. Transaction rolled back.");
