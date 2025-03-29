@@ -21,12 +21,20 @@ public class LoginUser extends HttpServlet{
 		String username = req.getParameter("username");
 		String password =  req.getParameter("password");
 		String redirectUrl = req.getParameter("redirectUrl");
-		
 		UserDaoImplementation userDao = new UserDaoImplementation();
 		User user = userDao.fetchUserByUsername(username);
+		HttpSession session = req.getSession();
+		
 		if(user != null) {
 			if(password.equals(EncryptDecrypt.decrypt(user.getPassword()))) {
-				HttpSession session = req.getSession();
+				if(req.getParameter("adminLogin") != null) {
+					boolean hasAdminAccess = userDao.hasAdminAccess(user);
+					if(hasAdminAccess) {
+						session.setAttribute("loggedAdminUser", user);
+						resp.getWriter().write("Admin Validation successfull");
+						return;
+					}
+				}
 				session.setAttribute("loggedUser", user);
 				resp.getWriter().write("User Logged Successfully");
 				if(redirectUrl.contains("OrderConfirmation")) {

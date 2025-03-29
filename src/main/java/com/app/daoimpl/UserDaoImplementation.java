@@ -55,7 +55,7 @@ public class UserDaoImplementation implements UserDAO {
 			while (result.next()) {
 				return new User(result.getInt("userid"), result.getString("user_name"), result.getString("password"),
 						result.getLong("phone_number"), result.getString("email"), result.getDate("created_on"),
-						result.getDate("last_login_date"));
+						result.getDate("last_login_date"), result.getString("role"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -76,7 +76,7 @@ public class UserDaoImplementation implements UserDAO {
 			while (userList.next()) {
 				User user = new User(userList.getInt("user_id"), userList.getString("user_name"),
 						userList.getString("password"), userList.getLong("phone_number"), userList.getString("email"),
-						userList.getDate("created_on"), userList.getDate("last_login_date"));
+						userList.getDate("created_on"), userList.getDate("last_login_date"),result.getString("role"));
 				usersList.add(user);
 			}
 			return usersList;
@@ -119,5 +119,9 @@ public class UserDaoImplementation implements UserDAO {
 		}
 		return 0;
 	}
-
+	
+	@Override
+	public boolean hasAdminAccess(User user) {
+		return "ADMIN".equals(user.getRole()) ? true : false ;
+	}
 }

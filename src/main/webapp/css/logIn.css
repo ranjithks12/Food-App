@@ -104,10 +104,11 @@
 	color: #16423C; /* Dark green text */
 	font-size: 14px;
 }
-
-
 .login-container.show {
-	right: 0; /* Slide into view */
+	right: 0; 
+}
+.show, .hide:hover {
+	cursor: pointer;
 }
 .hide{
 	margin-right: 1em;
@@ -115,4 +116,18 @@
 }
 .show{
 	margin-right: 1em;
+}
+
+.hyperlink-item{
+	margin-top: 2em;
+}
+.fgt-pwd, .sgn-adm, .sgn-usr {
+	color: #800080;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.fgt-pwd.sgn-adm.sgn-usr:hover {
+	color: #bf40bf;
 }
