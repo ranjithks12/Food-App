@@ -162,37 +162,13 @@ User user = (User) session.getAttribute("loggedUser");
 	    return urlParams.get(param);
 	}
     	window.onload = function() {
-    		
-/*     		const shouldShowPopup = getQueryParam("showPopup");
-    	    if (shouldShowPopup === "true") {
-    	        showPopup(); // Display the popup
-
-    	        // Optionally, clean up the URL for better UX
-    	        const url = new URL(window.location.href);
-    	        url.searchParams.delete("showPopup");
-    	        history.replaceState(null, "", url.toString());
-    	    }  */    		
-    		
-     		if (window.location.hash === "#popupcontainer") {
-    	        history.replaceState(null, null, window.location.pathname);
-    	        showPopup();
-    	    } else{
-    	    	 hidePopup();
-    	    } 
+			<% if(session.getAttribute("showPopup") != null) { %>
+				showPopup();
+			<% session.removeAttribute("showPopup"); } %>
 	    };
-	    
-	    function hidePopup(){
-			document.getElementById('popupcontainer').style.display = 'none';
-			document.getElementById('popupOverlay').style.display = 'none';
-	    }
-	    
-	  	function showPopup(){
-	  		document.getElementById('popupcontainer').style.display = 'block';
-	  		document.getElementById('popupOverlay').style.display = 'block';
-	  	}
-	
 	</script>
 
 <jsp:include page="logIn.jsp" />
+<jsp:include page="itemRemove.jsp" />
 </body>
 </html>
