@@ -31,23 +31,33 @@ public class LoginUser extends HttpServlet{
 					boolean hasAdminAccess = userDao.hasAdminAccess(user);
 					if(hasAdminAccess) {
 						session.setAttribute("loggedAdminUser", user);
-						resp.getWriter().write("Admin Validation successfull");
+						session.setAttribute("message", "Admin Login Successfull");
+						session.setAttribute("displayPopup", true);
+						resp.sendRedirect("adminDashboard.jsp");
 						return;
 					}
 				}
 				session.setAttribute("loggedUser", user);
+				session.setAttribute("message", "User Login Successfull");
+				session.setAttribute("displayPopup", true);
 				resp.getWriter().write("User Logged Successfully");
 				if(redirectUrl.contains("OrderConfirmation")) {
+					session.setAttribute("message", "User Login Successfull");
+					session.setAttribute("displayPopup", true);
 					req.getRequestDispatcher("/checkout").forward(req, resp);
 				} else {
 					resp.sendRedirect(redirectUrl);
 				}
 			}
 			else {
-				resp.sendRedirect("error.jsp");
+				session.setAttribute("message", "Something Error happend");
+				session.setAttribute("displayPopup", true);
+				resp.sendRedirect(redirectUrl);
 			}
 		} else {
-			resp.getWriter().write("No user Found..! Please Register");
+			session.setAttribute("message", "No User Found with the details");
+			session.setAttribute("displayPopup", true);
+			resp.sendRedirect(redirectUrl);
 		}
 		
 	}

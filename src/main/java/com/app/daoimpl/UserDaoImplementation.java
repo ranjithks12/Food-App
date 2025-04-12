@@ -13,6 +13,7 @@ import com.app.model.User;
 import com.app.util.MyConnector;
 
 public class UserDaoImplementation implements UserDAO {
+	private static final String ADMIN_ROLE = "ADMIN";
 	private static final String ADD_USER_QUERY = "INSERT INTO `USER`(`user_name`, `password`, `phone_number`, `email`) VALUES (?,?,?,?)";
 	private static final String FETCH_BY_USERNAME = "SELECT * FROM `USER` WHERE `user_name`=?";
 	private static final String FETCH_ALL = "SELECT * FROM `USER`";
@@ -122,6 +123,6 @@ public class UserDaoImplementation implements UserDAO {
 	
 	@Override
 	public boolean hasAdminAccess(User user) {
-		return "ADMIN".equals(user.getRole()) ? true : false ;
+		return ADMIN_ROLE.equals(user.getRole()) ? true : false ;
 	}
 }

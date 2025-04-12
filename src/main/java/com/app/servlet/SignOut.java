@@ -18,6 +18,8 @@ public class SignOut extends HttpServlet{
 		String redirectUrl = req.getParameter("redirectUri");
 		HttpSession session = req.getSession();
 		session.removeAttribute("loggedUser");
+		session.setAttribute("message", "User Logout Successfull");
+		session.setAttribute("displayPopup", true);
 		resp.sendRedirect(redirectUrl);
 	}
 
