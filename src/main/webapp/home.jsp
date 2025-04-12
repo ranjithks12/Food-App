@@ -186,6 +186,7 @@
 	</footer>
 	
     <jsp:include page="logIn.jsp" />
+    <jsp:include page="globalPopup.jsp" />
     <script type="text/javascript">
     	document.getElementById("search-content").addEventListener("input", function(e) {
         	this.value = this.value.replace(/[^a-zA-Z\s]/g, ""); 
@@ -195,6 +196,11 @@
     			openLoginModal();
     			<% session.removeAttribute("showLoginPopup");   
              } %>
+             
+             <% if(session.getAttribute("displayPopup") != null ) { %>
+             	showMessagePopup();
+ 				<% session.removeAttribute("displayPopup");   
+          	 } %>
 		};
     </script>
 </body>

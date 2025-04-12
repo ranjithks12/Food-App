@@ -105,15 +105,11 @@
 			<div>
 				<div>
 					<form method="post" action="cart">
-						<input type="hidden" name="menuItemId"
-							value="<%=item.getMenuId()%>">
+						<input type="hidden" name="menuItemId" value="<%=item.getMenuId()%>">
 						<div class="quantity">
-							<button type="submit" name="action" value="decrease"
-								class="decrease">-</button>
-							<input class="quantity-number" type="number" name="quantity"
-								value="<%=item.getQuantity()%>" readonly>
-							<button type="submit" name="action" value="increase"
-								class="increase">+</button>
+							<button type="submit" name="action" value="decrease" class="decrease">-</button>
+							<input class="quantity-number" type="number" name="quantity" value="<%=item.getQuantity()%>" readonly>
+							<button type="submit" name="action" value="increase" class="increase">+</button>
 						</div>
 					</form>
 				</div>

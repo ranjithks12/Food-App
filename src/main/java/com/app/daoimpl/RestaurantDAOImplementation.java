@@ -22,6 +22,11 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 	private static final String FETCH_ALL = "SELECT * FROM `RESTAURANT`";
 	private static final String FETCH_BY_ID = "SELECT * FROM `RESTAURANT` WHERE `RESTAURANTID`=?";
 	private static final String GET_RESTAURANT_BY_SEARCH_STRING = "SELECT * FROM `RESTAURANT` WHERE `RESTAURANTNAME` LIKE ?";
+	private static final String ADD_RESTAURANT = "INSERT INTO `RESTAURANT`(`RESTAURANTNAME`, `DELIVERYTIME`, `CUSINETYPE`, `RATINGS`, `ADDRESS`, `ISACTIVE`, `IMAGEPATH`) VALUES(?,?,?,?,?,?,?)";
+//	private static final String UPDATE_RESTAURANT = "UPDATE `RESTAURANT` SET `RESTAURANTNAME`=?, `DELIVERYTIME`=? `CUSINETYPE`=?, `RATINGS`=? `ISACTIVE`=? `IMAGEPATH`=? WHERE `RESTAURANTID`=?";
+	private static String UPDATE_RESTAURANT = "";
+	private static final String REMOVE_RESTAURANT = "DELETE FROM `RESTAURANT` WHERE `RESTAURANTID`=?";
+	
 	private static List<Restaurant> restaurantList = new ArrayList<Restaurant>();
 	
 	@Override
@@ -87,6 +92,74 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 			MyConnector.getMyConnector().disConnect(result, pstatement, connection);
 		}
 		return !restaurantList.isEmpty() ? restaurantList : null;
+	}
+
+	@Override
+	public int addRestaurant(Restaurant restaurant) {
+		try {
+			connection = MyConnector.getMyConnector().connect();	
+			pstatement =  connection.prepareStatement(ADD_RESTAURANT);
+			pstatement.setString(1, restaurant.getRestaurantName());
+			pstatement.setInt(2, restaurant.getDeliveryTime());
+			pstatement.setString(3, restaurant.getCusineType());
+			pstatement.setFloat(4, restaurant.getRatings());
+			pstatement.setString(5, restaurant.getAddress());
+			pstatement.setBoolean(6, restaurant.isActive());
+			pstatement.setString(7, restaurant.getImagePath());
+			return pstatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MyConnector.getMyConnector().disConnect(null, pstatement, connection);
+		}
+		return 0;
+	}
+
+	@Override
+	public int updateRestaurant(Restaurant restaurant) {
+		try {
+			connection = MyConnector.getMyConnector().connect();
+			UPDATE_RESTAURANT = formUpdateQuery(restaurant);
+			pstatement = connection.prepareStatement(UPDATE_RESTAURANT);
+
+			return pstatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MyConnector.getMyConnector().disConnect(null, pstatement, connection);
+		}
+		return 0;
+	}
+
+	@Override
+	public int deleteRestaurant(int restaurantId) {
+		try {
+			connection = MyConnector.getMyConnector().connect();
+			pstatement = connection.prepareStatement(REMOVE_RESTAURANT);
+			pstatement.setInt(1, restaurantId);
+			return pstatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			MyConnector.getMyConnector().disConnect(null, pstatement, connection);
+		}
+		return 0;
+	}
+	
+	
+	private static String formUpdateQuery(Restaurant restaurant) {
+		StringBuilder query = new StringBuilder("UPDATE `RESTAURANT` SET ");
+		List<String> params = new ArrayList<>();
+		if(restaurant.getRestaurantName() != null) params.add("`RESTAURANTNAME` = '" + restaurant.getRestaurantName() + "'");
+		params.add("`DELIVERYTIME` = '" + restaurant.getDeliveryTime() + "'");
+		if(restaurant.getCusineType() != null) params.add("`CUSINETYPE` = '" + restaurant.getCusineType() + "'");
+		if(restaurant.getAddress() != null) params.add("`ADDRESS` = '" + restaurant.getAddress() + "'");
+		params.add("`RATINGS` = '" + restaurant.getRatings() + "'");
+		params.add("`ISACTIVE` = " + (restaurant.isActive() ? 1 : 0));
+		if(restaurant.getImagePath() != null) params.add("`IMAGEPATH` = '" + restaurant.getImagePath() + "'");
+		query.append(String.join(", ", params));
+		query.append(" WHERE `RESTAURANTID` = " + restaurant.getRestaurantId());
+		return query.toString();
 	}
 
 }

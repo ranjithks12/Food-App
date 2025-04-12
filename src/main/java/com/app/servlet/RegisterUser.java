@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.app.daoimpl.UserDaoImplementation;
 import com.app.model.User;
@@ -18,6 +19,7 @@ public class RegisterUser extends HttpServlet{
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
 		String username = req.getParameter("username");
 		String password = EncryptDecrypt.encrypt(req.getParameter("password"));
 		Long phonenumber =Long.parseLong(req.getParameter("phonenumber"));
@@ -27,11 +29,15 @@ public class RegisterUser extends HttpServlet{
 		UserDaoImplementation userDao = new UserDaoImplementation();
 		int status = userDao.addUser(user);
 		if(status != 0) {
-			req.getSession().setAttribute("showLoginPopup", true);
+			session.setAttribute("showLoginPopup", true);
+			session.setAttribute("message", "User Registration Successfull Please Login to Continue.");
+			session.setAttribute("displayPopup", true);
 			resp.sendRedirect("home.jsp");
 		}
 		else {
-			resp.sendRedirect("error.jsp");
+			session.setAttribute("message", "User Registration not completed. Some error happened");
+			session.setAttribute("displayPopup", true);
+			resp.sendRedirect("home.jsp");
 		}
 	}
 }
