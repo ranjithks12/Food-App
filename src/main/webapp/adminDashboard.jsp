@@ -6,11 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Admin DashBoard</title>
+<link rel="stylesheet" href="css/navbar.css">
 <link rel="stylesheet" href="css/dashboard.css"/>
 </head>
 <body>
+	<nav class="navbar">
+		<h1>BiteHub</h1>
+		<ul>
+			<li>
+				<a href="home.jsp" class="nav-link">
+					<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"  width="1.5em" height="1.5em">
+  					<path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+					</svg>
+					<span class="nav-element">Home</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
 	<% User adminUser = (User) session.getAttribute("loggedAdminUser"); %>
 	<h1> Hello <%=  adminUser.getUser_name()%></h1>
+	
     <div class="dashboard-content">
         <div class="dashboar-item" > 
             <a href="rest-actions.jsp">
@@ -33,7 +48,7 @@
         </div>
 
         <div class="dashboar-item" >
-            <a href="">
+            <a href="menu-actions.jsp">
             <div class="icon-container">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1.5em" height="1.5em">
                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
@@ -63,8 +78,13 @@
             </a>
         </div>
     </div>
-    
-        <jsp:include page="globalPopup.jsp" />
+
+
+	<footer class="footer">
+		<p>&copy; 2024 BiteHub. All rights reserved.</p>
+	</footer>
+
+	<jsp:include page="globalPopup.jsp" />
         <script>
         window.onload =  function() {
              <% if(session.getAttribute("displayPopup") != null ) { %>
