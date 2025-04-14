@@ -80,7 +80,7 @@
 	<form action="search" method="get">
 		<div class="search-bar">
 			<div class="search-group">
-				<input type="search" class="search-content" id="search-content" name="searchString" placeholder="Search your needs" required="required"/>
+				<input type="search" class="search-content" id="search-content" name="searchString" oninput="filterInput(this)" placeholder="Search your needs" required="required"/>
 				<button  class="search-btn" type="submit"  onclick="divclicked()">
 					<svg xmlns="http://www.w3.org/2000/svg" fill="none"
 					viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -147,7 +147,6 @@
 				<h2 class="restaurant-name"><%= restaurant.getRestaurantName()%></h2>
 				<p class="restaurant-address"><%= restaurant.getAddress()%></p>
 				<div class="content">
-					<!-- <p class="restaurant-rating"> -->
 					<div class="icon-info">
 						<div class="star">
         					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="rating-star">
@@ -182,7 +181,7 @@
     </div>
     
 	<footer class="footer">
-		<p>&copy; 2024 FoodApp. All rights reserved.</p>
+		<p>&copy; 2024 BiteHub. All rights reserved.</p>
 	</footer>
 	
     <jsp:include page="logIn.jsp" />
