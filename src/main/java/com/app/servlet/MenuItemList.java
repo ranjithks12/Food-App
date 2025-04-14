@@ -21,15 +21,19 @@ public class MenuItemList extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		int restaurantId = Integer.parseInt(req.getParameter("restaurantId"));
+		HttpSession session = req.getSession();
 		MenuItemDAOImplementation menuItemDAO = new MenuItemDAOImplementation();
 		RestaurantDAOImplementation restaurantDAO = new RestaurantDAOImplementation();
-		List<MenuItem> menuItemList = menuItemDAO.getMenuItemById(restaurantId);
+		List<MenuItem> menuItemList;
 		Restaurant restaurant = restaurantDAO.getRestaurantById(restaurantId);
-		
-		HttpSession session = req.getSession();
-		session.setAttribute("menuItemList", menuItemList);
-		session.setAttribute("restaurant", restaurant);
-		resp.sendRedirect("menuItem.jsp");
+		try {
+			menuItemList = menuItemDAO.getMenuItemById(restaurantId);
+			session.setAttribute("menuItemList", menuItemList);
+			session.setAttribute("restaurant", restaurant);
+			resp.sendRedirect("menuItem.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 }
