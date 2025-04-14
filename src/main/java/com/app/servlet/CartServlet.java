@@ -18,6 +18,11 @@ import com.app.model.MenuItem;
 @SuppressWarnings("serial")
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
+	private static final String ADD = "add";
+	private static final String DECREASE = "decrease";
+	private static final String INCREASE = "increase";
+	private static final String DELETE = "delete";
+	
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
@@ -28,27 +33,44 @@ public class CartServlet extends HttpServlet {
 		}
 
 		String action = req.getParameter("action");
-		if ("add".equals(action)) {
-			boolean isAdded = addItemToCart(req, resp, cart, session);
-			if(isAdded) {
-				resp.sendRedirect("menuItem.jsp");
-			} else {
-				session.setAttribute("showPopup", true);
-				resp.sendRedirect("menuItem.jsp");
-//				resp.sendRedirect("menuItem.jsp?showPopup=true");
-			}
-		} else if ("decrease".equals(action)) {
-			updateQuantityDecrease(req, cart, session);
-			resp.sendRedirect("cart.jsp");
-		} else if ("increase".equals(action)) {
-			updateQuantityIncrease(req, cart, session);
-			resp.sendRedirect("cart.jsp");
-		} else if ("delete".equals(action)) {
-			cart.removeItem(Integer.parseInt(req.getParameter("menuItemId")));
-			resp.sendRedirect("cart.jsp");
-		} else {
+		String redirectPage = null;
 
+		switch (action) {
+		    case ADD:
+		        if (addItemToCart(req, resp, cart, session)) {
+		            redirectPage = "menuItem.jsp";
+		        } else {
+		            session.setAttribute("showPopup", true);
+		            redirectPage = "menuItem.jsp";
+		        }
+		        break;
+
+		    case DECREASE:
+		        updateQuantityDecrease(req, cart, session);
+		        redirectPage = "cart.jsp";
+		        break;
+
+		    case INCREASE:
+		        updateQuantityIncrease(req, cart, session);
+		        redirectPage = "cart.jsp";
+		        break;
+
+		    case DELETE:
+		        int menuItemId = Integer.parseInt(req.getParameter("menuItemId"));
+		        cart.removeItem(menuItemId);
+		        redirectPage = "cart.jsp";
+		        break;
+
+		    default:
+		        redirectPage = "cart.jsp"; 
+		        break;
 		}
+
+		// Final redirect
+		if (redirectPage != null) {
+		    resp.sendRedirect(redirectPage);
+		}
+
 	}
 
 	private void updateQuantityDecrease(HttpServletRequest req, Cart cart, HttpSession session) {
@@ -68,41 +90,41 @@ public class CartServlet extends HttpServlet {
 	}
 
 	private boolean addItemToCart(HttpServletRequest req, HttpServletResponse resp, Cart cart, HttpSession session) {
-		int menuItemId = Integer.parseInt(req.getParameter("menuItemId"));
-		int quantity = Integer.parseInt(req.getParameter("quantity"));
+	    int menuItemId = Integer.parseInt(req.getParameter("menuItemId"));
+	    int quantity = Integer.parseInt(req.getParameter("quantity"));
 
-		Map<Integer, CartItem> items = cart.getItems();
-		int restaureantId = items.values().stream().findFirst().map(CartItem::getRestaurantId).orElse(-1);
-		MenuItemDAOImplementation menuItemDAO = new MenuItemDAOImplementation();
-		MenuItem menuItem = menuItemDAO.getMenuItem(menuItemId);
-//		try {
-			if (!items.isEmpty()) {
-				if (menuItem.getRestaurantId() != restaureantId) {
-					return false;
-				} else {
-					if (menuItem != null) {
-						CartItem item = new CartItem(menuItem.getMenuId(), menuItem.getRestaurantId(),
-								menuItem.getItemName(), menuItem.getPrice(), quantity, quantity * menuItem.getPrice(),
-								menuItem.getImagePath());
-						cart.addItem(item);
-						return true;
-					}
-				}
-			} else {
-				if (menuItem != null) {
-					CartItem item = new CartItem(menuItem.getMenuId(), menuItem.getRestaurantId(),
-							menuItem.getItemName(), menuItem.getPrice(), quantity, quantity * menuItem.getPrice(),
-							menuItem.getImagePath());
-					cart.addItem(item);
-					return true;
-				}
+	    MenuItemDAOImplementation menuItemDAO = new MenuItemDAOImplementation();
+	    MenuItem menuItem = menuItemDAO.getMenuItem(menuItemId);
 
-			}
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-		session.setAttribute("cart", cart);
-		return true;
+	    if (menuItem == null) {
+	        return false; // menu item not found
+	    }
+
+	    // Check if cart has items from a different restaurant
+	    Map<Integer, CartItem> items = cart.getItems();
+	    int existingRestaurantId = items.values().stream()
+	        .findFirst()
+	        .map(CartItem::getRestaurantId)
+	        .orElse(menuItem.getRestaurantId()); // default to current item if empty
+
+	    if (!items.isEmpty() && menuItem.getRestaurantId() != existingRestaurantId) {
+	        return false; // different restaurant, cannot add
+	    }
+
+	    // Create and add item
+	    CartItem item = new CartItem(
+	        menuItem.getMenuId(),
+	        menuItem.getRestaurantId(),
+	        menuItem.getItemName(),
+	        menuItem.getPrice(),
+	        quantity,
+	        quantity * menuItem.getPrice(),
+	        menuItem.getImagePath()
+	    );
+
+	    cart.addItem(item);
+	    session.setAttribute("cart", cart);
+	    return true;
 	}
-
 }
+

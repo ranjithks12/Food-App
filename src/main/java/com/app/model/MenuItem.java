@@ -7,14 +7,14 @@ public class MenuItem {
     private String itemName;
     private String itemDescription;
     private float price;
-    private boolean isAvailable;
+    private int isAvailable;
     private String imagePath;
 	public MenuItem() {
 		super();
 	}
 	
 	public MenuItem(int menuId, int restaurantId, String itemName, String itemDescription, float price,
-			boolean isAvailable, String imagePath) {
+			int isAvailable, String imagePath) {
 		super();
 		this.menuId = menuId;
 		this.restaurantId = restaurantId;
@@ -25,7 +25,7 @@ public class MenuItem {
 		this.imagePath = imagePath;
 	}
 
-	public MenuItem(int restaurantId, String itemName, String itemDescription, float price, boolean isAvailable,
+	public MenuItem(int restaurantId, String itemName, String itemDescription, float price, int isAvailable,
 			String imagePath) {
 		super();
 		this.restaurantId = restaurantId;
@@ -66,12 +66,15 @@ public class MenuItem {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public boolean isAvailable() {
+
+	public int getIsAvailable() {
 		return isAvailable;
 	}
-	public void setAvailable(boolean isAvailable) {
+
+	public void setIsAvailable(int isAvailable) {
 		this.isAvailable = isAvailable;
 	}
+
 	public String getImagePath() {
 		return imagePath;
 	}

@@ -5,9 +5,14 @@
 }
 
 body{
-    padding: 2em;
-    justify-content: center;
-    align-items: center; 
+	padding-top: 7em;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.main-content{
+	padding: 0 2em;
 }
 input, input:focus {
     border: none;
@@ -22,7 +27,7 @@ input, input:focus {
 .add-res-table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #E9EFEC;
+    background-color: rgb(255, 179, 255);
 }
 
 .add-res-table td {
@@ -83,7 +88,7 @@ input, input:focus {
 }
 
 #restaurant-table thead {
-    background-color: #6A9C89;
+    background-color: #800080;
     color: #ffffff;
 }
 
@@ -99,7 +104,7 @@ input, input:focus {
 }
 
 #restaurant-table tbody tr:nth-child(odd) {
-    background-color: #C4DAD2;
+    background-color: rgb(255, 179, 255);
 }
 
 .form-field {
