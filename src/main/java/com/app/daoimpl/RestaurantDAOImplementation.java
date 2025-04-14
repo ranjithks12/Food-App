@@ -11,6 +11,7 @@ import java.util.List;
 import com.app.dao.RestaurantDAO;
 import com.app.model.Restaurant;
 import com.app.util.MyConnector;
+import com.app.util.QueryData;
 
 public class RestaurantDAOImplementation implements RestaurantDAO {
 
@@ -24,11 +25,25 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 	private static final String GET_RESTAURANT_BY_SEARCH_STRING = "SELECT * FROM `RESTAURANT` WHERE `RESTAURANTNAME` LIKE ?";
 	private static final String ADD_RESTAURANT = "INSERT INTO `RESTAURANT`(`RESTAURANTNAME`, `DELIVERYTIME`, `CUSINETYPE`, `RATINGS`, `ADDRESS`, `ISACTIVE`, `IMAGEPATH`) VALUES(?,?,?,?,?,?,?)";
 //	private static final String UPDATE_RESTAURANT = "UPDATE `RESTAURANT` SET `RESTAURANTNAME`=?, `DELIVERYTIME`=? `CUSINETYPE`=?, `RATINGS`=? `ISACTIVE`=? `IMAGEPATH`=? WHERE `RESTAURANTID`=?";
-	private static String UPDATE_RESTAURANT = "";
 	private static final String REMOVE_RESTAURANT = "DELETE FROM `RESTAURANT` WHERE `RESTAURANTID`=?";
 	
 	private static List<Restaurant> restaurantList = new ArrayList<Restaurant>();
 	
+	/**
+	 * Retrieves all restaurants from the database and returns them as a list.
+	 * <p>
+	 * This method clears the existing {@code restaurantList}, establishes a database connection,
+	 * executes a query to fetch all restaurant records, and populates the list with {@code Restaurant}
+	 * objects. Each restaurant is constructed using the data retrieved from the database, including
+	 * restaurant ID, name, delivery time, cuisine type, ratings, address, active status, and image path.
+	 * If an SQL exception occurs during execution, it is caught, printed to the console, and the method
+	 * returns {@code null}. The database resources are closed in the {@code finally} block to ensure
+	 * proper cleanup.
+	 *
+	 * @return a {@code List<Restaurant>} containing all restaurants from the database,
+	 *         or {@code null} if an error occurs during database access
+	 * @throws SQLException if a database access error occurs
+	 */
 	@Override
 	public List<Restaurant> getAllRestaurants() {
 		restaurantList.clear();
@@ -51,6 +66,14 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 		return null;
 	}
 
+	/**
+	 * Retrieves a restaurant from the database by its unique ID.
+	 *
+	 * @param restaurantId the unique identifier of the restaurant
+	 * @return a {@link Restaurant} object containing the restaurant's details if found, 
+	 *         or {@code null} if no restaurant matches the provided ID or an error occurs
+	 * @throws SQLException if a database access error occurs
+	 */
 	@Override
 	public Restaurant getRestaurantById(int restaurantId) {
 		try {
@@ -73,6 +96,15 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 		return null;
 	}
 	
+	/**
+	 * Retrieves a list of restaurants based on a search string.
+	 * The search string is used to match against restaurant names using a LIKE query with wildcards.
+	 * The results are stored in the restaurantList, which is cleared before each query.
+	 * 
+	 * @param searchString the string to search for in restaurant names
+	 * @return a List of Restaurant objects matching the search criteria, or null if no matches are found
+	 * @throws SQLException if a database error occurs during the query execution
+	 */
 	@Override
 	public List<Restaurant> getRestaurantBySearchString(String searchString) {
 		restaurantList.clear();
@@ -94,6 +126,14 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 		return !restaurantList.isEmpty() ? restaurantList : null;
 	}
 
+	/**
+	 * Adds a new restaurant to the database.
+	 *
+	 * @param restaurant the Restaurant object containing details such as name, delivery time, cuisine type,
+	 *                   ratings, address, active status, and image path
+	 * @return the number of rows affected by the insert operation; returns 0 if the operation fails
+	 * @throws SQLException if a database access error occurs
+	 */
 	@Override
 	public int addRestaurant(Restaurant restaurant) {
 		try {
@@ -115,13 +155,24 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 		return 0;
 	}
 
+	
+	/**
+	 * Updates a restaurant record in the database.
+	 *
+	 * @param restaurant the Restaurant object containing updated information
+	 * @return the number of rows affected by the update operation; returns 0 if an error occurs
+	 * @throws SQLException if a database access error occurs
+	 */
 	@Override
 	public int updateRestaurant(Restaurant restaurant) {
 		try {
 			connection = MyConnector.getMyConnector().connect();
-			UPDATE_RESTAURANT = formUpdateQuery(restaurant);
-			pstatement = connection.prepareStatement(UPDATE_RESTAURANT);
-
+			QueryData data = formUpdateQuery(restaurant);
+			pstatement = connection.prepareStatement(data.getQuery());
+			List<Object> paramList = data.getParams();
+		    for (int i = 0; i < paramList.size(); i++) {
+		    	pstatement.setObject(i + 1, paramList.get(i));
+		    }
 			return pstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -131,6 +182,14 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 		return 0;
 	}
 
+
+	/**
+	 * Deletes a restaurant from the database based on the provided restaurant ID.
+	 *
+	 * @param restaurantId the unique identifier of the restaurant to be deleted
+	 * @return the number of rows affected by the delete operation; returns 0 if the operation fails or an error occurs
+	 * @throws SQLException if a database access error occurs during the execution
+	 */
 	@Override
 	public int deleteRestaurant(int restaurantId) {
 		try {
@@ -146,20 +205,64 @@ public class RestaurantDAOImplementation implements RestaurantDAO {
 		return 0;
 	}
 	
-	
-	private static String formUpdateQuery(Restaurant restaurant) {
+	/**
+	 * Builds a parameterized SQL UPDATE query for the {@code RESTAURANT} table based on 
+	 * the non-null fields of the given {@link Restaurant} object. 
+	 * 
+	 * <p>The method dynamically constructs the SQL query using placeholders (`?`) 
+	 * for values, and collects the actual values into a list of parameters 
+	 * in the same order. This makes the query safe for use with 
+	 * {@link java.sql.PreparedStatement} to avoid SQL injection and quoting issues.</p>
+	 * 
+	 * <p>Only non-null fields (except for mandatory ones like DELIVERYTIME, RATINGS, 
+	 * ISACTIVE) are included in the SET clause of the query. The final 
+	 * WHERE clause filters the update by {@code RESTAURANTID}.</p>
+	 *
+	 * @param restaurant the {@link Restaurant} object containing updated field values
+	 * @return a {@link QueryData} object containing the generated SQL query string and 
+	 *         a list of parameter values to be set in the {@link PreparedStatement}
+	 */
+	private QueryData formUpdateQuery(Restaurant restaurant) {
 		StringBuilder query = new StringBuilder("UPDATE `RESTAURANT` SET ");
-		List<String> params = new ArrayList<>();
-		if(restaurant.getRestaurantName() != null) params.add("`RESTAURANTNAME` = '" + restaurant.getRestaurantName() + "'");
-		params.add("`DELIVERYTIME` = '" + restaurant.getDeliveryTime() + "'");
-		if(restaurant.getCusineType() != null) params.add("`CUSINETYPE` = '" + restaurant.getCusineType() + "'");
-		if(restaurant.getAddress() != null) params.add("`ADDRESS` = '" + restaurant.getAddress() + "'");
-		params.add("`RATINGS` = '" + restaurant.getRatings() + "'");
-		params.add("`ISACTIVE` = " + (restaurant.isActive() ? 1 : 0));
-		if(restaurant.getImagePath() != null) params.add("`IMAGEPATH` = '" + restaurant.getImagePath() + "'");
-		query.append(String.join(", ", params));
-		query.append(" WHERE `RESTAURANTID` = " + restaurant.getRestaurantId());
-		return query.toString();
+		List<Object> params = new ArrayList<>();
+		
+		if (restaurant.getRestaurantName() != null) {
+			query.append("`RESTAURANTNAME` = ?, ");
+			params.add(restaurant.getRestaurantName());
+		}
+		query.append("`DELIVERYTIME` = ?, ");
+		params.add(restaurant.getDeliveryTime());
+		
+		if (restaurant.getCusineType() != null) {
+			query.append("`CUSINETYPE` = ?, ");
+			params.add(restaurant.getCusineType());
+		}
+
+		if (restaurant.getAddress() != null) {
+			query.append("`ADDRESS` = ?, ");
+			params.add(restaurant.getAddress());
+		}
+
+		query.append("`RATINGS` = ?, ");
+		params.add(restaurant.getRatings());
+
+		query.append("`ISACTIVE` = ?, ");
+		params.add(restaurant.isActive() ? 1 : 0);
+
+		if (restaurant.getImagePath() != null) {
+			query.append("`IMAGEPATH` = ?, ");
+			params.add(restaurant.getImagePath());
+		}
+		
+		// Remove trailing comma and space
+		if (query.toString().endsWith(", ")) {
+			query.setLength(query.length() - 2);
+		}
+
+		query.append(" WHERE `RESTAURANTID` = ?");
+		params.add(restaurant.getRestaurantId());
+
+		return new QueryData(query.toString(), params);
 	}
 
 }

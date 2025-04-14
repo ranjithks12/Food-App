@@ -24,16 +24,16 @@ public class RestaurantActions extends HttpServlet {
 	private static final String DELETE = "delete";
 	private static final String UPDATE = "update";
 
-	String action;
-	int restaurantId;
-	String restaurantName;
-	int deliveryTime;
-	String cusineType;
-	float ratings;
-	String addres;
-	boolean isActive;
-	String imagePath;
-	RestaurantDAOImplementation implObj;
+	private static String action;
+	private static int restaurantId;
+	private static String restaurantName;
+	private static int deliveryTime;
+	private static String cusineType;
+	private static float ratings;
+	private static String addres;
+	private static boolean isActive;
+	private static String imagePath;
+	private static RestaurantDAOImplementation implObj;
 	
 	@Override
 	public void init() throws ServletException {
@@ -43,19 +43,11 @@ public class RestaurantActions extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		Part imagePart = req.getPart("imagePath");
 		extractData(req);
+		Part imagePart = req.getPart("imagePath");
 		Restaurant restaurant = returnRestaurantObject();
-		if(imagePart != null) {
-			String imagePartName = imagePart.getSubmittedFileName();
-			if(!imagePartName.isEmpty()) {
-				try {
-					restaurant.setImagePath(imagePartName.substring(0, imagePartName.lastIndexOf('.')));
-				} catch(StringIndexOutOfBoundsException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+		
+		Utils.setImagePath(restaurant, imagePart);
 		
 		if (ADD.equals(action)) {
 			if (generateFolders(restaurantName, imagePart)) {
@@ -99,7 +91,6 @@ public class RestaurantActions extends HttpServlet {
 	 * @return true if the folders were created and the file was saved successfully;
 	 *         false otherwise
 	 */
-
 	private boolean generateFolders(String restaurantName, Part imagePart) {
 		if (Utils.createFolders(restaurantName)) {
 			String fileName = imagePart.getSubmittedFileName();
@@ -120,8 +111,8 @@ public class RestaurantActions extends HttpServlet {
 	}
 
 	private void extractData(HttpServletRequest req) {
-		if (Utils.validateFeild(req.getParameter("action"))) {
-			action = req.getParameter("action");
+		if (Utils.validateFeild(req.getParameter("submitAction"))) {
+			action = req.getParameter("submitAction");
 		}
 		if (Utils.validateFeild(req.getParameter("restaurantId"))) {
 			restaurantId = Integer.parseInt(req.getParameter("restaurantId"));
@@ -159,3 +150,16 @@ public class RestaurantActions extends HttpServlet {
 		return restaurantObj;
 	}
 }
+
+
+
+//if(imagePart != null) {
+//String imagePartName = imagePart.getSubmittedFileName();
+//if(!imagePartName.isEmpty()) {
+//	try {
+//		restaurant.setImagePath(imagePartName.substring(0, imagePartName.lastIndexOf('.')));
+//	} catch(StringIndexOutOfBoundsException e) {
+//		e.printStackTrace();
+//	}
+//}
+//}
